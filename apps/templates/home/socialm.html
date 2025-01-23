@@ -1,0 +1,428 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="row">
+            <!-- Box 1: Traffic on Website -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-bell-55 text-primary" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">763,215</h3>
+                        <p class="card-category">Facebook</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 2: Daily Sales -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-delivery-fast text-info" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">3,500</h3>
+                        <p class="card-category">Instagram</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 3: Team Performance -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-send text-success" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">12100</h3>
+                        <p class="card-category">Twitter</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 4: New Users -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-single-02 text-warning" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">15,243</h3>
+                        <p class="card-category">LinkedIn</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 5: Conversion Rate -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-chart-bar-32 text-danger" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">12%</h3>
+                        <p class="card-category">Youtube</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-single-02 text-danger" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">12</h3>
+                        <p class="card-category">Whatsapp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       <!-- Lead Vault Section with Icons, Text, and Numbers --><!-- Lead Vault Section with Icons and Transparent Background -->
+
+
+        
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Access Facebook</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> 5</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Access LinkedIn</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-info"></i> 35</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Access Instagram</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-success"></i> 12</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Access Twitter</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> 5</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Access WhatsApp</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-info"></i> 35</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Access Email</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-success"></i> 12</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="card card-tasks">
+                    <div class="card-header ">
+                        <h6 class="title d-inline">Daily Tasks Alloted</h6>
+                        <p class="card-category d-inline"></p>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-link dropdown-toggle btn-icon"
+                                    data-toggle="dropdown">
+                                <i class="tim-icons icon-settings-gear-63"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#pablo">Action</a>
+                                <a class="dropdown-item" href="#pablo">Another action</a>
+                                <a class="dropdown-item" href="#pablo">Something else</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body ">
+                        <div class="table-full-width table-responsive">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="">
+                                                <span class="form-check-sign">
+                            <span class="check"></span>
+                            </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="title">Update the Documentation</p>
+                                        <p class="text-muted">Dwuamish Head, Seattle, WA 8:47 AM</p>
+                                    </td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-link"
+                                                data-original-title="Edit Task">
+                                            <i class="tim-icons icon-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="" checked="">
+                                                <span class="form-check-sign">
+                            <span class="check"></span>
+                            </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="title">GDPR Compliance</p>
+                                        <p class="text-muted">The GDPR is a regulation that requires businesses to
+                                            protect the personal data and privacy of Europe citizens for
+                                            transactions that occur within EU member states.</p>
+                                    </td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-link"
+                                                data-original-title="Edit Task">
+                                            <i class="tim-icons icon-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="">
+                                                <span class="form-check-sign">
+                            <span class="check"></span>
+                            </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="title">Solve the issues</p>
+                                        <p class="text-muted">Fifty percent of all respondents said they would be
+                                            more likely to shop at a company </p>
+                                    </td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-link"
+                                                data-original-title="Edit Task">
+                                            <i class="tim-icons icon-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="">
+                                                <span class="form-check-sign">
+                            <span class="check"></span>
+                            </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="title">Release v2.0.0</p>
+                                        <p class="text-muted">Ra Ave SW, Seattle, WA 98116, SUA 11:19 AM</p>
+                                    </td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-link"
+                                                data-original-title="Edit Task">
+                                            <i class="tim-icons icon-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="">
+                                                <span class="form-check-sign">
+                            <span class="check"></span>
+                            </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="title">Export the processed files</p>
+                                        <p class="text-muted">The report also shows that consumers will not easily
+                                            forgive a company once a breach exposing their personal data
+                                            occurs. </p>
+                                    </td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-link"
+                                                data-original-title="Edit Task">
+                                            <i class="tim-icons icon-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="">
+                                                <span class="form-check-sign">
+                            <span class="check"></span>
+                            </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="title">Arival at export process</p>
+                                        <p class="text-muted">Capitol Hill, Seattle, WA 12:34 AM</p>
+                                    </td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-link"
+                                                data-original-title="Edit Task">
+                                            <i class="tim-icons icon-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+           
+                <div class="col-lg-6 col-md-12">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h4 class="card-title">My Journal</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table tablesorter">
+                                    <thead class="text-primary">
+                                        <tr>
+                                            <th>Task Name</th>
+                                            <th>Priority</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Loop through journal entries -->
+                                        {% for entry in journal_entries %}
+                                            <tr>
+                                                <td>{{ entry.task_name }}</td>
+                                                <td>{{ entry.priority }}</td>
+                                                <td>
+                                                    <input type="checkbox" 
+                                                           id="doneCheckbox" 
+                                                           {% if entry.status == 'done' %}checked{% endif %}>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+
+
+            <div class="col-lg-6 col-md-12">
+                <div class="card ">
+                    <div class="card-header">
+                        <h4 class="card-title"> Trending Topics</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table tablesorter " id="">
+                                <thead class=" text-primary">
+                                <tr>
+                                    <th>
+                                        Trending
+                                    </th>
+                                    <th>
+                                       Platform
+                                    </th>
+                                    <th>
+                                        Hash Tags
+                                     </th>
+                                 </tr>
+                               <td>Pod casts content seo</td>
+                               <td>facebook</td>
+                               <td>#trending</td>
+                               
+                        <tr>
+                            <td>AI, Saas</td>
+                             <td>facebook</td>
+                            <td>#Top</td>
+                            
+                        </tr>
+                            
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+         
+
+        <!-- Calendar -->
+
+
+        
+
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+    });
+</script>
+
+{% endblock javascripts %}

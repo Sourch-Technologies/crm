@@ -1,0 +1,329 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Zoom-like Meeting Page {% endblock %}
+
+<!-- Specific Page CSS goes HERE -->
+{% block stylesheets %}
+<style>
+    .content {
+        display: flex;
+        padding: 20px;
+    }
+
+    .main-content {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .icon {
+        width: 120px;
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 12px;
+        margin: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        text-align: center;
+        font-size: 30px;
+        padding: 10px;
+    }
+
+    .icon:hover {
+        background-color: #0056b3;
+    }
+
+    .icon i {
+        font-size: 36px;
+    }
+
+    .icon span {
+        font-size: 14px;
+        margin-top: 5px;
+        text-align: center;
+    }
+
+    .side-box {
+        width: 25%;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin-right: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .side-box h4 {
+        margin-bottom: 10px;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .meeting-item {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+        cursor: pointer;
+    }
+
+    .meeting-item:last-child {
+        border-bottom: none;
+    }
+
+    /* Popup Modal Styles */
+    .popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        height: 500px;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        display: none;
+        z-index: 1000;
+        border: 1px solid #ddd;
+    }
+
+    .popup-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .popup-header h4 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .popup-header button {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #888;
+    }
+
+    .popup-header button:hover {
+        color: #000;
+    }
+
+    /* Form Styles in Modals */
+    .popup form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .popup form label {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    .popup form input,
+    .popup form select {
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+
+    .popup form input:focus,
+    .popup form select:focus {
+        border-color: #007bff;
+    }
+
+    .popup form button {
+        padding: 12px;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .popup form button:hover {
+        background-color: #0056b3;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: none;
+        z-index: 999;
+    }
+
+    .meeting-detail {
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+</style>
+<!-- Include Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="content">
+    <div class="side-box" Style="color-black">
+        <h4>Scheduled Meetings</h4>
+        <div class="meeting-item" onclick="showMeetingDetails('Meeting 1')">Meeting 1</div>
+        <div class="meeting-item" onclick="showMeetingDetails('Meeting 2')">Meeting 2</div>
+    </div>
+    <div class="main-content">
+        <div class="icon" onclick="showPopup('schedule')">
+            <i class="fas fa-calendar-plus"></i>
+            <span>Schedule</span>
+        </div>
+        <div class="icon" onclick="startNewMeeting()">
+            <i class="fas fa-video"></i>
+            <span>New Meeting</span>
+        </div>
+        <div class="icon" onclick="showVideoMeetingModal()">
+            <i class="fas fa-user-plus"></i>
+            <span>Join</span>
+        </div>
+        <div class="icon" onclick="startScreenShare()">
+            <i class="fas fa-share-alt"></i>
+            <span>Share Screen</span>
+        </div>
+    </div>
+</div>
+
+<!-- Schedule Modal -->
+<div class="popup" id="popup">
+    <div class="popup-header">
+        <h4>Schedule a Meeting</h4>
+        <button onclick="closePopup()">×</button>
+    </div>
+    <form id="schedule-form">
+        <label for="meeting-title">Meeting Title:</label>
+        <input type="text" id="meeting-title" name="meeting-title" required>
+
+        <label for="meeting-date">Date:</label>
+        <input type="date" id="meeting-date" name="meeting-date" required>
+
+        <label for="meeting-time">Time:</label>
+        <input type="time" id="meeting-time" name="meeting-time" required>
+
+        <label for="time-zone">Time Zone:</label>
+        <select id="time-zone" name="time-zone" required>
+            <option value="UTC">UTC</option>
+            <option value="EST">EST</option>
+            <option value="PST">PST</option>
+        </select>
+
+        <button type="submit">Schedule</button>
+    </form>
+</div>
+
+<!-- Video Modal -->
+<div class="popup" id="video-modal">
+    <div class="popup-header">
+        <h4>Join a Meeting</h4>
+        <button onclick="closePopup()">×</button>
+    </div>
+    <div id="video-container"></div>
+</div>
+
+<!-- Meeting Details Modal -->
+<div id="meeting-details-modal" class="popup">
+    <div class="popup-header">
+        <h4>Meeting Details</h4>
+        <button onclick="closePopup()">×</button>
+    </div>
+    <div class="meeting-detail">
+        <h5>Meeting Title: Example Meeting</h5>
+        <p><strong>Date:</strong> 2025-01-15</p>
+        <p><strong>Time:</strong> 10:00 AM UTC</p>
+        <p><strong>Time Zone:</strong> UTC</p>
+    </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+{% endblock content %}
+
+{% block javascripts %}
+<script>
+    let apiInstance; // Declare the variable for Jitsi API instance
+
+    function showPopup(type) {
+        const popup = type === 'schedule' ? 'popup' : 'video-modal';
+        document.getElementById(popup).style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+        document.getElementById('video-modal').style.display = 'none';
+        document.getElementById('meeting-details-modal').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    function startNewMeeting() {
+        // Start a new meeting and create a room name dynamically
+        const roomName = 'NewRoom_' + Date.now(); // Unique room name based on timestamp
+        const domain = "meet.jit.si";
+        const options = {
+            roomName: roomName,
+            width: "100%",
+            height: "100%",
+            parentNode: document.getElementById('video-container'),
+            configOverwrite: { startWithAudioMuted: true, startWithVideoMuted: true },
+            interfaceConfigOverwrite: { filmStripOnly: false }
+        };
+
+        // Create a new Jitsi instance with the unique room name
+        apiInstance = new JitsiMeetExternalAPI(domain, options);
+        showPopup('video'); // Show the video modal
+    }
+
+    function showVideoMeetingModal() {
+        const videoContainer = document.getElementById('video-container');
+        videoContainer.innerHTML = ''; // Clear previous content
+        const domain = "meet.jit.si";
+        const options = {
+            roomName: "ExampleRoom",
+            parentNode: videoContainer,
+            width: "100%",
+            height: "100%",
+        };
+        apiInstance = new JitsiMeetExternalAPI(domain, options);
+        showPopup('video');
+    }
+
+    function startScreenShare() {
+        if (apiInstance) {
+            apiInstance.executeCommand('toggleShareScreen');
+        } else {
+            alert('You must be in a meeting to share your screen!');
+        }
+    }
+
+    function showMeetingDetails(meeting) {
+        alert(`Details for ${meeting}`);
+        document.getElementById('meeting-details-modal').style.display = 'block';
+    }
+</script>
+<script src="https://meet.jit.si/external_api.js"></script>
+{% endblock javascripts %}

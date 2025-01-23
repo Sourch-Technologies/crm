@@ -1,0 +1,882 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="row">
+            <!-- Box 1: Traffic on Website -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-bell-55 text-primary" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">763,215</h3>
+                        <p class="card-category">Social Media</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 2: Daily Sales -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-delivery-fast text-info" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">3,500€</h3>
+                        <p class="card-category">Daily Sales</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 3: Team Performance -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-send text-success" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">12,100K</h3>
+                        <p class="card-category">Projects Running</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 4: New Users -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-single-02 text-warning" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">15,243</h3>
+                        <p class="card-category">New Clients</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 5: Conversion Rate -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-chart-bar-32 text-danger" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">12%</h3>
+                        <p class="card-category">Conversion Rate</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-single-02 text-danger" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">12</h3>
+                        <p class="card-category">Active Employees</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       <!--2nd Section Projects, Create Projects, Assign -->
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-chart p-3">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h2 class="card-title">Projects</h2>
+                                <!-- Create button -->
+                                <button class="btn btn-create" data-bs-toggle="modal" data-bs-target="#createTaskModal">CREATE</button>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" class="form-check-input" id="selectAll" onclick="toggleSelectAll()">
+                                            </th>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Assigned To</th>
+                                            <th>Priority</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="taskTableBody">
+                                        <!-- Example Task Row -->
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input task-checkbox"></td>
+                                            <td>101</td>
+                                            <td>Project Alpha</td>
+                                            <td>John Doe</td>
+                                            <td>High</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#taskDetailsModal"
+                                                    onclick="showTaskDetails('Project Alpha', '2025-01-15', 'John Doe', 'High', 'Private')">Details</button>
+                                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#assignTaskModal"
+                                                    onclick="prepareAssignTask('Project Alpha')">Assign</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal for Creating a Task -->
+            <div class="modal fade" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="createTaskModalLabel">Create New Project</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form id="createTaskForm">
+                                <div class="mb-3">
+                                    <label for="taskNameInput" class="form-label">Project Name</label>
+                                    <input type="text" class="form-control" id="taskNameInput" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="taskDueDateInput" class="form-label">Due Date</label>
+                                    <input type="date" class="form-control" id="taskDueDateInput" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="taskPriorityInput" class="form-label">Priority</label>
+                                    <select class="form-select" id="taskPriorityInput">
+                                        <option value="High">High</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Low">Low</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="taskEmployeeInput" class="form-label">Assign to Employee</label>
+                                    <select class="form-select" id="taskEmployeeInput">
+                                        <option value="John Doe">John Doe</option>
+                                        <option value="Jane Smith">Jane Smith</option>
+                                        <option value="Robert Brown">Robert Brown</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" onclick="createTask()">Save Task</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal for Task Details -->
+            <div class="modal fade" id="taskDetailsModal" tabindex="-1" aria-labelledby="taskDetailsModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="taskDetailsModalLabel">Project Details</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p><strong>Project Name:</strong> <span id="taskDetailsName"></span></p>
+                            <p><strong>Due Date:</strong> <span id="taskDetailsDueDate"></span></p>
+                            <p><strong>Assigned To:</strong> <span id="taskDetailsAssignedTo"></span></p>
+                            <p><strong>Priority:</strong> <span id="taskDetailsPriority"></span></p>
+                            <p><strong>Privacy:</strong> <span id="taskDetailsPrivacy"></span></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal for Assigning Task -->
+            <div class="modal fade" id="assignTaskModal" tabindex="-1" aria-labelledby="assignTaskModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="assignTaskModalLabel">Assign Task</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p>Assign task: <span id="taskToAssignName"></span></p>
+                            <div class="mb-3">
+                                <label for="assignEmployeeInput" class="form-label">Assign to Employee</label>
+                                <select class="form-select" id="assignEmployeeInput">
+                                    <option value="John Doe">John Doe</option>
+                                    <option value="Jane Smith">Jane Smith</option>
+                                    <option value="Robert Brown">Robert Brown</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" onclick="assignTask()">Assign</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                let currentTaskToAssign = '';
+                
+                function toggleSelectAll() {
+                    const checkboxes = document.querySelectorAll('.task-checkbox');
+                    const selectAllCheckbox = document.getElementById('selectAll');
+                    checkboxes.forEach(checkbox => checkbox.checked = selectAllCheckbox.checked);
+                }
+        
+                function showTaskDetails(name, dueDate, assignedTo, priority, privacy) {
+                    document.getElementById('taskDetailsName').textContent = name || 'N/A';
+                    document.getElementById('taskDetailsDueDate').textContent = dueDate || 'N/A';
+                    document.getElementById('taskDetailsAssignedTo').textContent = assignedTo || 'N/A';
+                    document.getElementById('taskDetailsPriority').textContent = priority || 'N/A';
+                    document.getElementById('taskDetailsPrivacy').textContent = privacy || 'N/A';
+                }
+        
+                function createTask() {
+                    const taskName = document.getElementById('taskNameInput').value.trim();
+                    const taskDueDate = document.getElementById('taskDueDateInput').value;
+                    const taskPriority = document.getElementById('taskPriorityInput').value;
+                    const taskEmployee = document.getElementById('taskEmployeeInput').value;
+        
+                    if (taskName && taskDueDate) {
+                        const taskTableBody = document.getElementById('taskTableBody');
+                        const newRow = document.createElement('tr');
+        
+                        newRow.innerHTML = `
+                            <td><input type="checkbox" class="form-check-input task-checkbox"></td>
+                            <td>NEW</td>
+                            <td>${taskName}</td>
+                            <td>${taskEmployee}</td>
+                            <td>${taskPriority}</td>
+                            <td>
+                                <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#taskDetailsModal"
+                                    onclick="showTaskDetails('${taskName}', '${taskDueDate}', '${taskEmployee}', '${taskPriority}', 'Private')">Details</button>
+                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#assignTaskModal"
+                                    onclick="prepareAssignTask('${taskName}')">Assign</button>
+                            </td>
+                        `;
+        
+                        taskTableBody.appendChild(newRow);
+        
+                        document.getElementById('createTaskForm').reset();
+                        hideModal('createTaskModal');
+                    } else {
+                        alert('Please fill out all fields.');
+                    }
+                }
+        
+                function prepareAssignTask(taskName) {
+                    currentTaskToAssign = taskName;
+                    document.getElementById('taskToAssignName').textContent = taskName || 'N/A';
+                }
+        
+                function assignTask() {
+                    const assignedEmployee = document.getElementById('assignEmployeeInput').value;
+        
+                    const rows = document.querySelectorAll('#taskTableBody tr');
+                    rows.forEach(row => {
+                        if (row.children[2].textContent === currentTaskToAssign) {
+                            row.children[3].textContent = assignedEmployee;
+                        }
+                    });
+        
+                    hideModal('assignTaskModal');
+                }
+        
+                function hideModal(modalId) {
+                    const modalElement = document.getElementById(modalId);
+                    const bootstrapModal = bootstrap.Modal.getInstance(modalElement);
+                    if (bootstrapModal) {
+                        bootstrapModal.hide();
+                    }
+                }
+            </script>
+        
+            <!-- Bootstrap JS -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            
+            
+
+            <!-- Section: Project Efficiency -->
+<div class="row">
+    <div class="col-12">
+        <div class="card card-chart">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-6 text-left">
+                        <h2 class="card-title">Project Efficiency Dashboard</h2>
+                        <h5 class="card-category">Select a project to view detailed performance insights and efficiency metrics.</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- Dropdown to Select Project -->
+                <div class="row justify-content-center">
+                    <div class="col-lg-4">
+                        <select id="projectSelect" class="form-control">
+                            <option value="" selected disabled>Select a Project</option>
+                            <option value="project1">Project 1</option>
+                            <option value="project2">Project 2</option>
+                            <option value="project3">Project 3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lead Vault Section -->
+<div class="card card-plain" id="leadVault">
+    <div class="card-body">
+        <div class="row justify-content-center mt-4">
+            <!-- Lead Box 1 -->
+            <div class="col-lg-2">
+                <div class="card card-box lead-box text-warning">
+                    <div class="card-body text-center">
+                        <h4 class="lead-title">Task Completion</h4>
+                        <p class="lead-count" id="taskCompletion">--</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Lead Box 2 -->
+            <div class="col-lg-2">
+                <div class="card card-box lead-box text-info">
+                    <div class="card-body text-center">
+                        <h4 class="lead-title">Resource Utilization</h4>
+                        <p class="lead-count" id="resourceUtilization">--</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Lead Box 3 -->
+            <div class="col-lg-2">
+                <div class="card card-box lead-box text-warning">
+                    <div class="card-body text-center">
+                        <h4 class="lead-title">Budget Efficiency</h4>
+                        <p class="lead-count" id="budgetEfficiency">--</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Lead Box 4 -->
+            <div class="col-lg-2">
+                <div class="card card-box lead-box text-success">
+                    <div class="card-body text-center">
+                        <h4 class="lead-title">Team Productivity</h4>
+                        <p class="lead-count" id="teamProductivity">--</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Lead Box 5 -->
+            <div class="col-lg-2">
+                <div class="card card-box lead-box text-warning">
+                    <div class="card-body text-center">
+                        <h4 class="lead-title">Value Delivered</h4>
+                        <p class="lead-count" id="valueDelivered">--</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Project data with percentages
+    const projectData = {
+        project1: {
+            taskCompletion: 80,
+            resourceUtilization: 70,
+            budgetEfficiency: 75,
+            teamProductivity: 90,
+            valueDelivered: 85
+        },
+        project2: {
+            taskCompletion: 60,
+            resourceUtilization: 65,
+            budgetEfficiency: 80,
+            teamProductivity: 70,
+            valueDelivered: 75
+        },
+        project3: {
+            taskCompletion: 90,
+            resourceUtilization: 85,
+            budgetEfficiency: 95,
+            teamProductivity: 88,
+            valueDelivered: 92
+        }
+    };
+
+    function animatePercentage(elementId, start, end, duration) {
+        let current = start;
+        const increment = (end - start) / (duration / 16);
+        const element = document.getElementById(elementId);
+
+        function update() {
+            current += increment;
+            if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                current = end;
+                element.textContent = `${end}%`;
+            } else {
+                element.textContent = `${Math.round(current)}%`;
+                requestAnimationFrame(update);
+            }
+        }
+
+        requestAnimationFrame(update);
+    }
+
+    document.getElementById('projectSelect').addEventListener('change', function () {
+        const selectedProject = this.value;
+        if (selectedProject && projectData[selectedProject]) {
+            const project = projectData[selectedProject];
+            animatePercentage('taskCompletion', 0, project.taskCompletion, 1000);
+            animatePercentage('resourceUtilization', 0, project.resourceUtilization, 1000);
+            animatePercentage('budgetEfficiency', 0, project.budgetEfficiency, 1000);
+            animatePercentage('teamProductivity', 0, project.teamProductivity, 1000);
+            animatePercentage('valueDelivered', 0, project.valueDelivered, 1000);
+        }
+    });
+</script>
+<style>
+    /* Retain existing styles for boxes */
+    #leadVault .lead-box {
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        height: 150px;
+        text-align: center;
+        margin-bottom: 30px;
+        background: transparent;
+        border: 3px solid transparent; /* Default transparent border */
+    }
+
+    /* Border colors for each box based on class */
+    #leadVault .lead-box.text-warning {
+        border-color: #f7a440; /* Orange */
+    }
+
+    #leadVault .lead-box.text-info {
+        border-color: #138c96; /* Light blue */
+    }
+
+    #leadVault .lead-box.text-success {
+        border-color: #218838; /* Green */
+    }
+
+    #leadVault .lead-box.text-danger {
+        border-color: #c82333; /* Red (optional for other boxes) */
+    }
+
+    #leadVault .lead-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    #leadVault .lead-title {
+        font-size: 10px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    #leadVault .lead-count {
+        font-size: 30px;
+        font-weight: 700;
+    }
+</style>
+
+
+
+  <!-- Task creation and Assigning for the project Start -->
+  <div class="row">
+    <div class="col-12">
+        <div class="card card-chart">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-6 text-left">
+                        <h2 class="card-title">Project Task Management</h2>
+                        <h5 class="card-category">Manage Your Projects and Tasks</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="workflowSection">
+                    <!-- Select Project -->
+                    <div class="mb-4">
+                        <h5>Select Project</h5>
+                        <select id="projectSelect" class="form-control">
+                            <option value="">-- Select a Project --</option>
+                            <option value="1">Project A</option>
+                            <option value="2">Project B</option>
+                            <option value="3">Project C</option>
+                        </select>
+                    </div>
+
+                    <!-- Project Details -->
+                    <div id="projectDetailsSection" class="d-none">
+                        <h5>Project Details</h5>
+                        <p id="projectDescription">Select a project to view its details.</p>
+                    </div>
+
+                    <!-- Create Tasks -->
+                    <div id="createTasksSection" class="d-none">
+                        <h5>Create New Task</h5>
+                        <form id="createTaskForm">
+                            <div class="form-group">
+                                <label for="taskTitle">Task Title</label>
+                                <input type="text" id="taskTitle" class="form-control" placeholder="Enter task title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="taskDescription">Task Description</label>
+                                <textarea id="taskDescription" class="form-control" rows="3" placeholder="Enter task description" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="dueDate">Due Date</label>
+                                <input type="date" id="dueDate" class="form-control" required>
+                            </div>
+                            <button type="button" id="createTaskBtn" class="btn btn-primary">Create Task</button>
+                        </form>
+                        <ul id="taskList" class="mt-3"></ul>
+                    </div>
+
+                    <!-- Assign Tasks -->
+                    <div id="assignTasksSection" class="d-none">
+                        <h5>Assign Tasks</h5>
+                        <form id="assignTaskForm">
+                            <div class="form-group">
+                                <label for="assignTaskSelect">Select Task</label>
+                                <select id="assignTaskSelect" class="form-control">
+                                    <option value="">-- Select a Task --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="assignTo">Assign To</label>
+                                <input type="text" id="assignTo" class="form-control" placeholder="Enter team member name" required>
+                            </div>
+                            <button type="button" id="assignTaskBtn" class="btn btn-primary">Assign Task</button>
+                        </form>
+                    </div>
+
+                    <!-- Task Summary -->
+                    <div id="taskSummarySection" class="d-none mt-4">
+                        <h5>Task Summary</h5>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Project Name</th>
+                                    <th>Task</th>
+                                    <th>Assigned To</th>
+                                    <th>Due Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="taskSummaryTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const projectDetails = {
+        1: "Project A: Details about Project A...",
+        2: "Project B: Details about Project B...",
+        3: "Project C: Details about Project C..."
+    };
+
+    let tasks = []; // Array to store tasks for the selected project
+    const taskSummary = []; // Array to maintain task summary with project name
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const projectSelect = document.getElementById("projectSelect");
+        const projectDetailsSection = document.getElementById("projectDetailsSection");
+        const projectDescription = document.getElementById("projectDescription");
+        const createTasksSection = document.getElementById("createTasksSection");
+        const assignTasksSection = document.getElementById("assignTasksSection");
+        const taskSummarySection = document.getElementById("taskSummarySection");
+        const taskList = document.getElementById("taskList");
+        const assignTaskSelect = document.getElementById("assignTaskSelect");
+        const taskSummaryTableBody = document.getElementById("taskSummaryTableBody");
+
+        projectSelect.addEventListener("change", () => {
+            const selectedProject = projectSelect.value;
+
+            if (selectedProject) {
+                projectDetailsSection.classList.remove("d-none");
+                createTasksSection.classList.remove("d-none");
+                projectDescription.textContent = projectDetails[selectedProject];
+
+                // Reset tasks and UI for new project
+                tasks = [];
+                taskList.innerHTML = "";
+                assignTaskSelect.innerHTML = '<option value="">-- Select a Task --</option>';
+                assignTasksSection.classList.add("d-none");
+                taskSummarySection.classList.add("d-none");
+            } else {
+                projectDetailsSection.classList.add("d-none");
+                createTasksSection.classList.add("d-none");
+                assignTasksSection.classList.add("d-none");
+                taskSummarySection.classList.add("d-none");
+            }
+        });
+
+        document.getElementById("createTaskBtn").addEventListener("click", () => {
+            const taskTitle = document.getElementById("taskTitle").value.trim();
+            const taskDescription = document.getElementById("taskDescription").value.trim();
+            const dueDate = document.getElementById("dueDate").value.trim();
+            const selectedProjectName = projectSelect.options[projectSelect.selectedIndex].text;
+
+            if (taskTitle && taskDescription && dueDate) {
+                const task = { title: taskTitle, description: taskDescription, dueDate, assignedTo: "" };
+                tasks.push(task);
+
+                // Update task list
+                const listItem = document.createElement("li");
+                listItem.textContent = `${task.title} - Due: ${task.dueDate}`;
+                taskList.appendChild(listItem);
+
+                // Update assign task dropdown
+                const option = document.createElement("option");
+                option.value = task.title;
+                option.textContent = task.title;
+                assignTaskSelect.appendChild(option);
+
+                // Clear inputs
+                document.getElementById("taskTitle").value = "";
+                document.getElementById("taskDescription").value = "";
+                document.getElementById("dueDate").value = "";
+
+                // Show assign tasks section
+                assignTasksSection.classList.remove("d-none");
+            } else {
+                alert("Please enter task title, description, and due date.");
+            }
+        });
+
+        document.getElementById("assignTaskBtn").addEventListener("click", () => {
+            const selectedTaskTitle = assignTaskSelect.value;
+            const assignee = document.getElementById("assignTo").value.trim();
+            const selectedProjectName = projectSelect.options[projectSelect.selectedIndex].text;
+
+            if (selectedTaskTitle && assignee) {
+                const task = tasks.find(t => t.title === selectedTaskTitle);
+                if (task) {
+                    task.assignedTo = assignee;
+
+                    // Add to task summary
+                    taskSummary.push({ projectName: selectedProjectName, ...task });
+
+                    // Update summary table
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${selectedProjectName}</td>
+                        <td>${task.title}</td>
+                        <td>${task.assignedTo}</td>
+                        <td>${task.dueDate}</td>
+                    `;
+                    taskSummaryTableBody.appendChild(row);
+
+                    // Show summary section
+                    taskSummarySection.classList.remove("d-none");
+
+                    // Clear input
+                    document.getElementById("assignTo").value = "";
+                }
+            } else {
+                alert("Please select a task and enter the assignee name.");
+            }
+        });
+    });
+</script>
+
+<div class="project-management content">
+    <div class="container mt-5">
+        <h2 class="text-primary">Project Management and Graphical Analysis</h2>
+
+        <!-- Project Selection -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card project-card">
+                    <div class="card-header">
+                        <h5 class="card-title">Select a Project</h5>
+                    </div>
+                    <div class="card-body">
+                        <select id="projectSelect" class="form-select" onchange="updateProjectDetailsAndGraph()">
+                            <!-- Projects dynamically populated -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Graphical Analysis Section -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card project-card">
+                    <div class="card-header">
+                        <h5 class="card-title">Graphical Analysis</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="projectGraph" class="mt-3"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Isolated Styles for Project Management Section */
+    .project-management {
+        background-color: var(--bg-primary, #fff);
+        padding: 1rem;
+        border-radius: 8px;
+    }
+
+    .project-management .project-card {
+        border: 1px solid var(--border-color, #ddd);
+        background-color: var(--card-bg, #fff);
+        color: var(--text-color, #000);
+    }
+
+    /* Dark Theme Variables */
+    body.dark-theme .project-management {
+        --bg-primary: #2e3b4e;
+        --border-color: #4b5563;
+        --card-bg: #374151;
+        --text-color: #f9fafb;
+    }
+</style>
+
+<script>
+    // Example Projects
+    const projects = [
+        {
+            id: 1,
+            name: "Website Redesign",
+            expenses: [
+                { type: "Design", amount: 5000 },
+                { type: "Hosting", amount: 1000 },
+                { type: "Tools", amount: 2000 },
+                { type: "Miscellaneous", amount: 500 },
+            ],
+        },
+        {
+            id: 2,
+            name: "Mobile App Development",
+            expenses: [
+                { type: "Development", amount: 15000 },
+                { type: "APIs", amount: 5000 },
+                { type: "Testing", amount: 3000 },
+                { type: "Miscellaneous", amount: 2000 },
+            ],
+        },
+    ];
+
+    // Populate Projects Dropdown
+    function populateProjectsDropdown() {
+        const projectSelect = document.getElementById("projectSelect");
+        projectSelect.innerHTML = ""; // Clear options
+        projects.forEach((project) => {
+            const option = document.createElement("option");
+            option.value = project.id;
+            option.textContent = project.name;
+            projectSelect.appendChild(option);
+        });
+        updateProjectDetailsAndGraph(); // Load first project's details and graph
+    }
+
+    // Update Graphical Analysis
+    function updateProjectDetailsAndGraph() {
+        const selectedProjectId = parseInt(document.getElementById("projectSelect").value);
+        const selectedProject = projects.find((project) => project.id === selectedProjectId);
+
+        if (selectedProject) {
+            const ctx = document.getElementById("projectGraph").getContext("2d");
+
+            // Extract data for the graph
+            const labels = selectedProject.expenses.map((expense) => expense.type);
+            const data = selectedProject.expenses.map((expense) => expense.amount);
+
+            // Destroy old chart instance if exists
+            if (window.projectChart) window.projectChart.destroy();
+
+            // Create a new chart
+            window.projectChart = new Chart(ctx, {
+                type: "pie", // You can change this to 'bar', 'line', etc.
+                data: {
+                    labels,
+                    datasets: [
+                        {
+                            data,
+                            backgroundColor: [
+                                "rgba(255, 99, 132, 0.6)",
+                                "rgba(54, 162, 235, 0.6)",
+                                "rgba(255, 206, 86, 0.6)",
+                                "rgba(75, 192, 192, 0.6)",
+                            ],
+                            borderColor: [
+                                "rgba(255, 99, 132, 1)",
+                                "rgba(54, 162, 235, 1)",
+                                "rgba(255, 206, 86, 1)",
+                                "rgba(75, 192, 192, 1)",
+                            ],
+                            borderWidth: 1,
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: "top",
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (tooltipItem) {
+                                    return `$${tooltipItem.raw}`;
+                                },
+                            },
+                        },
+                    },
+                },
+            });
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", populateProjectsDropdown);
+</script>
+
+<!-- Include Bootstrap and Chart.js -->
+<link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+/>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"
+></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+
+
+ </div>
+
+ 
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+    });
+</script>
+
+{% endblock javascripts %}

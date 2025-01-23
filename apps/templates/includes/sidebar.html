@@ -1,0 +1,166 @@
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-wrapper" id="sidebarWrapper">
+        <div class="logo">
+            <!-- Static logo container -->
+            
+            <!-- Condensed toggle button (icon) -->
+            <button id="toggleSidebar" class="btn btn-link" style="position: absolute; right: 0; top: 50%;"
+                    onclick="toggleSidebar()">
+                <i id="sidebarArrow" class="fa fa-arrow-left" style="font-size: 20px;"></i> <!-- Arrow icon for condensed state -->
+            </button>
+            
+            <!-- Company name below the logo -->
+            
+        </div>
+        
+        <!-- Sidebar menu items -->
+        <ul class="nav">
+            <li class="{% if 'index' in segment %} active {% endif %} ">
+                <a href="/">
+                    <i class="tim-icons icon-chart-pie-36"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="valut.html">
+                    <i class="tim-icons icon-wallet-43"></i>
+                    <span class="nav-text">Lead Vault</span>
+                </a>
+            </li>
+            <li>
+                <a href="socialm.html">
+                    <i class="tim-icons icon-mobile"></i>
+                    <span class="nav-text">Social Media Management</span>
+                </a>
+            </li>
+            <li>
+                <a href="sales.html">
+                    <i class="tim-icons icon-sound-wave"></i>
+                    <span class="nav-text">Sales & Revenue</span>
+                </a>
+            </li>
+            <li>
+                <a href="website.html">
+                    <i class="tim-icons icon-world"></i>
+                    <span class="nav-text">Website Management</span>
+                </a>
+            </li>
+            <li>
+                <a href="projm.html">
+                    <i class="tim-icons icon-app"></i>
+                    <span class="nav-text">Project Management</span>
+                </a>
+            </li>
+            <li>
+                <a href="team.html">
+                    <i class="tim-icons icon-user-run"></i>
+                    <span class="nav-text">Team Management</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="client.html">
+                    <i class="tim-icons icon-credit-card"></i>
+                    <span class="nav-text">Client Management</span>
+                </a>
+            </li>
+            <li>
+                <a href="finance.html">
+                    <i class="tim-icons icon-bank"></i>
+                    <span class="nav-text">Finance & Operations</span>
+                </a>
+            </li>
+            <li>
+                <a href="videcon.html">
+                    <i class="tim-icons icon-video-66"></i>
+                    <span class="nav-text">Video Conferencing</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/user.html">
+                    <i class="tim-icons icon-single-02"></i>
+                    <span class="nav-text">User Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="crmusers.html">
+                    <i class="tim-icons icon-world"></i>
+                    <span class="nav-text">Nuvitro Users</span>
+                </a>
+            </li>
+            <li style="border-top: 1px solid #ddd; margin: 10px 0;"></li>
+            <li>
+                <a href="{% url 'login' %}">
+                    <i class="tim-icons icon-button-power"></i>
+                    <span class="nav-text">Logout</span>
+                </a>
+            </li>
+            <br><br><br><br><br>
+        </ul>
+    </div>
+</div>
+
+<!-- Main content section -->
+
+
+<script>
+    // Function to toggle between condensed and full sidebar
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const sidebarWrapper = document.getElementById('sidebarWrapper');
+        const mainContent = document.getElementById('mainContent');
+        const sidebarArrow = document.getElementById('sidebarArrow');
+
+        sidebar.classList.toggle('condensed'); // Toggle the sidebar's condensed state
+        sidebarWrapper.classList.toggle('condensed'); // Apply condensed state to the sidebar wrapper
+
+        // Change the arrow direction based on the sidebar state
+        if (sidebar.classList.contains('condensed')) {
+            sidebarArrow.classList.remove('fa-arrow-left');
+            sidebarArrow.classList.add('fa-arrow-right'); // Arrow pointing to the right when collapsed
+            mainContent.style.marginLeft = '60px'; // Move the content to the right when sidebar is condensed
+        } else {
+            sidebarArrow.classList.remove('fa-arrow-right');
+            sidebarArrow.classList.add('fa-arrow-left'); // Arrow pointing to the left when expanded
+            mainContent.style.marginLeft = '240px'; // Reset the position when sidebar is in full mode
+        }
+    }
+</script>
+
+<style>
+    /* Condensed sidebar style */
+    .sidebar-wrapper.condensed .nav-text {
+        display: none;  /* Hide text when sidebar is condensed */
+    }
+
+    .sidebar-wrapper.condensed .tim-icons {
+        width: 30px;  /* Adjust icon size for condensed state */
+        height: 30px;  /* Adjust icon size for condensed state */
+    }
+
+    .sidebar-wrapper.condensed .logo-normal {
+        display: none;  /* Hide the company name when condensed */
+    }
+
+    .sidebar-wrapper.condensed .logo-mini {
+        width: 50px;  /* Make logo mini in condensed mode */
+        height: 50px;
+    }
+
+    /* Main content area adjustment when sidebar is condensed */
+    #mainContent {
+        transition: margin-left 0.3s ease; /* Smooth transition for movement */
+        margin-left: 240px; /* Default sidebar width */
+    }
+
+    /* Sidebar width when in condensed mode */
+    .sidebar.condensed {
+        width: 60px; /* Adjust this value based on your icon size */
+    }
+
+    /* Condensed sidebar button adjustment */
+    #toggleSidebar {
+        font-size: 20px;  /* Adjusted icon size for condensed button */
+    }
+</style>

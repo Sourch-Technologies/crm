@@ -1,0 +1,593 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="content">
+        
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-chart">
+                    <div class="card-header ">
+                        <div class="row">
+                            <div class="col-sm-6 text-left">
+                                <h5 class="card-category">Sales Progress</h5>
+                                <h2 class="card-title">Dashboard</h2>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="chartBig1"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+     <!----Section 2-->
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Sales Through Agency/Agent</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-sound-wave text-primary"></i> 763,215</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="chartLinePurple"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Sales By In-house Team</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-chart-bar-32 text-info"></i> 3,500€</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="CountryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Sales By Running Ads</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-spaceship text-success"></i> 12,100K</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="chartLineGreen"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            
+            <div class="col-lg-12 col-md-12">
+                <div class="card ">
+                    <div class="card-header">
+                        <h4 class="card-title">Unpaid Invoices</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table tablesorter" id="">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Company
+                                        </th>
+                                        <th>
+                                            Service
+                                        </th>
+                                        <th class="text-center">
+                                            Dated
+                                        </th>
+                                        <th class="text-center">
+                                            Amount
+                                        </th>
+                                        <th class="text-center">
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            Dakota Rice
+                                        </td>
+                                        <td>
+                                            Niger
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td class="text-center">
+                                            Jan, 15
+                                        </td>
+                                        <td class="text-center">
+                                            $36,738
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-primary">Send Invoice</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Minerva Hooper
+                                        </td>
+                                        <td>
+                                            Curaçao
+                                        </td>
+                                        <td>
+                                            Sinaai-Waas
+                                        </td>
+                                        <td class="text-center">
+                                            Jan, 15
+                                        </td>
+                                        <td class="text-center">
+                                            $23,789
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-primary">Send Invoice</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Sage Rodriguez
+                                        </td>
+                                        <td>
+                                            Netherlands
+                                        </td>
+                                        <td>
+                                            Baileux
+                                        </td>
+                                        <td class="text-center">
+                                            Jan, 15
+                                        </td>
+                                        <td class="text-center">
+                                            $56,142
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-primary">Send Invoice</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Philip Chaney
+                                        </td>
+                                        <td>
+                                            Korea, South
+                                        </td>
+                                        <td>
+                                            Overland Park
+                                        </td>
+                                        <td class="text-center">
+                                            Jan, 15
+                                        </td>
+                                        <td class="text-center">
+                                            $38,735
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-primary">Send Invoice</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Doris Greene
+                                        </td>
+                                        <td>
+                                            Malawi
+                                        </td>
+                                        <td>
+                                            Feldkirchen in Kärnten
+                                        </td>
+                                        <td class="text-center">
+                                            Jan, 15
+                                        </td>
+                                        <td class="text-center">
+                                            $63,542
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-primary">Send Invoice</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Mason Porter
+                                        </td>
+                                        <td>
+                                            Chile
+                                        </td>
+                                        <td>
+                                            Gloucester
+                                        </td>
+                                        <td class="text-center">
+                                            Jan, 15
+                                        </td>
+                                        <td class="text-center">
+                                            $78,615
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-primary">Send Invoice</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Jon Porter
+                                        </td>
+                                        <td>
+                                            Portugal
+                                        </td>
+                                        <td>
+                                            Gloucester
+                                        </td>
+                                        <td class="text-center">
+                                            Jan, 15
+                                        </td>
+                                        <td class="text-center">
+                                            $98,615
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-primary">Send Invoice</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-12 col-md-12">
+                <div class="card ">
+                    <div class="card-header">
+                        <h4 class="card-title">Paid Invoices</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table tablesorter " id="">
+                                <thead class=" text-primary">
+                                <tr>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Company
+                                    </th>
+                                    <th>
+                                        Service
+                                    </th>
+                                    <th class="text-center">
+                                        Dated
+                                    </th>
+                                    <th class="text-center">
+                                        Amount
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Dakota Rice
+                                    </td>
+                                    <td>
+                                        Niger
+                                    </td>
+                                    <td>
+                                        Oud-Turnhout
+                                    </td>
+                                    <td class="text-center">
+                                        Jan, 15
+                                    </td>
+                                    <td class="text-center">
+                                        $36,738
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Minerva Hooper
+                                    </td>
+                                    <td>
+                                        Curaçao
+                                    </td>
+                                    <td>
+                                        Sinaai-Waas
+                                    </td>
+                                    <td class="text-center">
+                                        Jan, 15
+                                    </td>
+                                    <td class="text-center">
+                                        $23,789
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Sage Rodriguez
+                                    </td>
+                                    <td>
+                                        Netherlands
+                                    </td>
+                                    <td>
+                                        Baileux
+                                    </td>
+                                    <td class="text-center">
+                                        Jan, 15
+                                    </td>
+                                    <td class="text-center">
+                                        $56,142
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Philip Chaney
+                                    </td>
+                                    <td>
+                                        Korea, South
+                                    </td>
+                                    <td>
+                                        Overland Park
+                                    </td>
+                                    <td class="text-center">
+                                        Jan, 15
+                                    </td>
+                                    <td class="text-center">
+                                        $38,735
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Doris Greene
+                                    </td>
+                                    <td>
+                                        Malawi
+                                    </td>
+                                    <td>
+                                        Feldkirchen in Kärnten
+                                    </td>
+                                    <td class="text-center">
+                                        Jan, 15
+                                    </td>
+                                    <td class="text-center">
+                                        $63,542
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Mason Porter
+                                    </td>
+                                    <td>
+                                        Chile
+                                    </td>
+                                    <td>
+                                        Gloucester
+                                    </td>
+                                    <td class="text-center">
+                                        Jan, 15
+                                    </td>
+                                    <td class="text-center">
+                                        $78,615
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Jon Porter
+                                    </td>
+                                    <td>
+                                        Portugal
+                                    </td>
+                                    <td>
+                                        Gloucester
+                                    </td>
+                                    <td class="text-center">
+                                        Jan, 15
+                                    </td>
+                                    <td class="text-center">
+                                        $98,615
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+
+
+
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                  <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title mb-0">Current Client List</h4>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createClientModal">Create New Client</button>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table tablesorter" id="clientTable">
+                        <thead class="text-primary">
+                          <tr>
+                            <th>Name</th>
+                            <th>Company</th>
+                            <th>Service</th>
+                            <th class="text-center">Date of Start</th>
+                            <th class="text-center">Last Paid</th>
+                            <th class="text-center">Amount Spent</th>
+                            <th class="text-center">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody id="clientTableBody">
+                          <!-- Dynamic rows will be appended here -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="modal fade" id="createClientModal" tabindex="-1" role="dialog" aria-labelledby="createClientModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content" style="background-color: #1e1e2f; color: #fafcff;">
+                    <div class="modal-header">
+                      <h5 class="modal-title" style="background-color: #1e1e2f; color: #fafcff;" id="createClientModalLabel">Create New Client & Invoice</h5>
+                    </div>
+                    <div class="modal-body">
+                      <form id="createClientForm">
+                        <div class="mb-3">
+                          <label for="clientName" class="form-label">Client Name</label>
+                          <input type="text" class="form-control" id="clientName" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="companyName" class="form-label">Company Name</label>
+                          <input type="text" class="form-control" id="companyName" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="email" class="form-label">Email ID</label>
+                          <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="phone" class="form-label">Phone Number</label>
+                          <input type="tel" class="form-control" id="phone" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="serviceChosen" class="form-label">Service Chosen</label>
+                          <input type="text" class="form-control" id="serviceChosen" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="amountPayable" class="form-label">Amount Payable</label>
+                          <input type="number" class="form-control" id="amountPayable" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="tax" class="form-label">Tax (%)</label>
+                          <input type="number" class="form-control" id="tax" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="otherExpenses" class="form-label">Other Expenses</label>
+                          <input type="number" class="form-control" id="otherExpenses">
+                        </div>
+                        <div class="mb-3">
+                          <label for="invoiceDate" class="form-label">Date of Invoice</label>
+                          <input type="date" class="form-control" id="invoiceDate" required>
+                        </div>
+              
+                        <div class="d-flex justify-content-between">
+                          <button type="button" class="btn btn-secondary" id="createInvoiceBtn">Print Invoice</button>
+                          <button type="button" class="btn btn-primary" id="saveClientBtn">Save Client</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+              
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  document.getElementById("createInvoiceBtn").addEventListener("click", function (e) {
+    e.preventDefault();
+
+    // Collect form data
+    const clientName = document.getElementById("clientName").value;
+    const companyName = document.getElementById("companyName").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const serviceChosen = document.getElementById("serviceChosen").value;
+    const amountPayable = parseFloat(document.getElementById("amountPayable").value).toFixed(2);
+    const tax = parseFloat(document.getElementById("tax").value);
+    const otherExpenses = parseFloat(document.getElementById("otherExpenses").value || 0).toFixed(2);
+    const invoiceDate = document.getElementById("invoiceDate").value;
+    const totalAmount = (parseFloat(amountPayable) + parseFloat(otherExpenses)) * (1 + tax / 100);
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Invoice Header
+    doc.setFontSize(18);
+    doc.text("SOURCH TECHNOLOGIES PRIVATE LIMITED", 105, 10, { align: "center" });
+    doc.setFontSize(10);
+    doc.text(
+      "100 Kva Sub Station, Imam Bargah Lane Athoora Near J K Grameen Bank, Kreri Baramula,\nJammu & Kashmir, India",
+      105,
+      20,
+      { align: "left", maxWidth: 100 }
+    );
+
+    // Invoice Details
+    doc.setFontSize(12);
+    doc.text(`Invoice #: SRC-INV-24-0026`, 14, 40);
+    doc.text(`Invoice Date: ${invoiceDate}`, 14, 46);
+    doc.text(`Due Date: ${invoiceDate}`, 14, 52);
+    doc.text(`Payment Terms: Immediate`, 14, 58);
+
+    // Client Details
+    doc.text(`Bill to:`, 14, 70);
+    doc.text(`Name: ${clientName}`, 14, 76);
+    doc.text(`Company: ${companyName}`, 14, 82);
+    doc.text(`Email: ${email}`, 14, 88);
+    doc.text(`Phone: ${phone}`, 14, 94);
+
+    // Line Items
+    doc.text(`Service`, 14, 110);
+    doc.text(`Cost ($)`, 120, 110);
+    doc.text(`Amount ($)`, 160, 110);
+
+    doc.text(`${serviceChosen}`, 14, 116);
+    doc.text(`${amountPayable}`, 120, 116);
+    doc.text(`${amountPayable}`, 160, 116);
+
+    // Total
+    doc.setFontSize(10);
+    doc.text(`Total: $ ${totalAmount.toFixed(2)}`, 160, 126);
+
+    // Footer
+    doc.setFontSize(8);
+    doc.text("Bank Details:", 14, 150);
+    doc.text("Account Holder: SOURCH TECHNOLOGIES PRIVATE LIMITED", 14, 156);
+    doc.text("Account Number: 50200079961610", 14, 162);
+    doc.text("IFSC Code: HDFC0006924", 14, 168);
+    doc.text("Bank Name: HDFC Bank", 14, 174);
+
+    // Save PDF
+    doc.save(`${clientName}_Invoice.pdf`);
+  });
+</script>
+
+</div>              
+
+        
+
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+    });
+</script>
+
+{% endblock javascripts %}

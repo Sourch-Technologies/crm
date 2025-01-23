@@ -1,0 +1,883 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="row">
+            <!-- Box 1: Traffic on Website -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-bell-55 text-primary" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">763,215</h3>
+                        <p class="card-category">Social Media</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 2: Daily Sales -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-delivery-fast text-info" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">3,500€</h3>
+                        <p class="card-category">Daily Sales</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 3: Team Performance -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-send text-success" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">12,100K</h3>
+                        <p class="card-category">Projects Running</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 4: New Users -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-single-02 text-warning" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">15,243</h3>
+                        <p class="card-category">New Clients</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 5: Conversion Rate -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-chart-bar-32 text-danger" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">12%</h3>
+                        <p class="card-category">Conversion Rate</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-single-02 text-danger" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">12</h3>
+                        <p class="card-category">Active Employees</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-chart">
+                    <div class="card-header ">
+                        <div class="row">
+                            <div class="col-sm-6 text-left">
+                                <h5 class="card-category">Yearly Progress</h5>
+                                <h2 class="card-title">Dashboard</h2>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                                    <label class="btn btn-sm btn-primary btn-simple active" id="0">
+                                        <input type="radio" name="options" checked>
+                                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Social Media</span>
+                                        <span class="d-block d-sm-none">
+                        <i class="tim-icons icon-single-02"></i>
+                    </span>
+                                    </label>
+                                    <label class="btn btn-sm btn-primary btn-simple" id="1">
+                                        <input type="radio" class="d-none d-sm-none" name="options">
+                                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Sales</span>
+                                        <span class="d-block d-sm-none">
+                        <i class="tim-icons icon-gift-2"></i>
+                    </span>
+                                    </label>
+                                </label>
+                                <label class="btn btn-sm btn-primary btn-simple" id="1">
+                                    <input type="radio" class="d-none d-sm-none" name="options">
+                                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">New Projects</span>
+                                    <span class="d-block d-sm-none">
+                    <i class="tim-icons icon-gift-2"></i>
+                </span>
+                                </label>
+                            </label>
+                            <label class="btn btn-sm btn-primary btn-simple" id="1">
+                                <input type="radio" class="d-none d-sm-none" name="options">
+                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Renewals</span>
+                                <span class="d-block d-sm-none">
+                <i class="tim-icons icon-gift-2"></i>
+            </span>
+                            </label>
+                                    <label class="btn btn-sm btn-primary btn-simple" id="2">
+                                        <input type="radio" class="d-none" name="options">
+                                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Clients</span>
+                                        <span class="d-block d-sm-none">
+                        <i class="tim-icons icon-tap-02"></i>
+                    </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="chartBig1"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+        
+       <!-- Lead Vault Section with Icons, Text, and Numbers --><!-- Lead Vault Section with Icons and Transparent Background -->
+
+
+       <!-- Lead Vault Section with Icons and Transparent Background -->
+<div class="card card-plain" id="leadVault">
+    <div class="card-body">
+       <!-- Row of Lead Boxes -->
+        <div class="row justify-content-center">
+            <!-- Lead Box 1 -->
+            <div class="col-lg-2">
+                <a href="/lead-2" class="card card-box lead-box text-warning">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-bell-55 lead-icon"></i>
+                        <h4 class="lead-title">Lead List</h4>
+                        <p class="lead-count">120</p>
+                    </div>
+                </a>
+            </div>
+            <!-- Lead Box 2 -->
+            <div class="col-lg-2">
+                <a href="/lead-3" class="card card-box lead-box text-info">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-bulb-63 lead-icon"></i>
+                        <h4 class="lead-title">Hot Leads</h4>
+                        <p class="lead-count">180</p>
+                    </div>
+                </a>
+            </div>
+            <!-- Lead Box 3 -->
+            <div class="col-lg-2">
+                <a href="/lead-2" class="card card-box lead-box text-warning">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-bell-55 lead-icon"></i>
+                        <h4 class="lead-title">Warm Leads</h4>
+                        <p class="lead-count">120</p>
+                    </div>
+                </a>
+            </div>
+            <!-- Lead Box 4 -->
+            <div class="col-lg-2">
+                <a href="/lead-4" class="card card-box lead-box text-success">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-chart-pie-36 lead-icon"></i>
+                        <p class="lead-title">Cold Leads</p>
+                        <p class="lead-count">90</p>
+                    </div>
+                </a>
+            </div>
+        
+            <!-- Lead Box 5 -->
+            <div class="col-lg-2">
+                <a href="/lead-2" class="card card-box lead-box text-warning">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-bell-55 lead-icon"></i>
+                        <h4 class="lead-title">Dead Leads</h4>
+                        <p class="lead-count">120</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Scoped styles for the Lead Vault section */
+    #leadVault .lead-box {
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        height: 150px;
+        text-align: center;
+        margin-bottom: 30px;
+        background: transparent; /* Transparent background */
+        text-decoration: none; /* Remove underline from links */
+    }
+
+    #leadVault .lead-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    #leadVault .lead-title {
+        font-size: 10px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    #leadVault .lead-count {
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+    #leadVault .lead-icon {
+        font-size: 40px; /* Icon size */
+        color: white; /* Icon color */
+        margin-bottom: 10px;
+    }
+
+    #leadVault .col-lg-2 {
+        padding: 0;
+    }
+
+    /* Icon-based lead box colors */
+    #leadVault .lead-box.text-warning {
+        border: 1px solid #f7a440;
+    }
+
+    #leadVault .lead-box.text-info {
+        border: 1px solid #138c96;
+    }
+
+    #leadVault .lead-box.text-success {
+        border: 1px solid #218838;
+    }
+
+    #leadVault .lead-box.text-danger {
+        border: 1px solid #c82333;
+    }
+
+    /* Spacing and layout for the row inside Lead Vault */
+    #leadVault .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    /* Card styling within Lead Vault */
+    #leadVault .card-box {
+        border: none;
+        border-radius: 12px;
+    }
+
+    /* Title for Lead Vault section */
+    #leadVault .card-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #333;
+    }
+
+    /* Responsive design for Lead Vault */
+    @media (max-width: 768px) {
+        #leadVault .col-lg-2 {
+            flex: 0 0 45%;
+        }
+    }
+
+    @media (max-width: 576px) {
+        #leadVault .col-lg-2 {
+            flex: 0 0 100%;
+        }
+    }
+</style>
+
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Traffic On Website</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> 763,215</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="chartLinePurple"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Daily Sales</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info"></i> 3,500€</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="CountryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Team Performance</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-send text-success"></i> 12,100K</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="chartLineGreen"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="card card-tasks">
+                    <div class="card-header ">
+                        <h6 class="title d-inline">Latest Tasks</h6>
+                        <p class="card-category d-inline"></p>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-link dropdown-toggle btn-icon"
+                                    data-toggle="dropdown">
+                                <i class="tim-icons icon-settings-gear-63"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#pablo">Action</a>
+                                <a class="dropdown-item" href="#pablo">Another action</a>
+                                <a class="dropdown-item" href="#pablo">Something else</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body ">
+                        <div class="table-full-width table-responsive">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="">
+                                                <span class="form-check-sign">
+                            <span class="check"></span>
+                            </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="title">Update the Documentation</p>
+                                        <p class="text-muted">Dwuamish Head, Seattle, WA 8:47 AM</p>
+                                    </td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-link"
+                                                data-original-title="Edit Task">
+                                            <i class="tim-icons icon-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="" checked="">
+                                                <span class="form-check-sign">
+                            <span class="check"></span>
+                            </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="title">GDPR Compliance</p>
+                                        <p class="text-muted">The GDPR is a regulation that requires businesses to
+                                            protect the personal data and privacy of Europe citizens for
+                                            transactions that occur within EU member states.</p>
+                                    </td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-link"
+                                                data-original-title="Edit Task">
+                                            <i class="tim-icons icon-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="">
+                                                <span class="form-check-sign">
+                            <span class="check"></span>
+                            </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="title">Solve the issues</p>
+                                        <p class="text-muted">Fifty percent of all respondents said they would be
+                                            more likely to shop at a company </p>
+                                    </td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-link"
+                                                data-original-title="Edit Task">
+                                            <i class="tim-icons icon-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="">
+                                                <span class="form-check-sign">
+                            <span class="check"></span>
+                            </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="title">Release v2.0.0</p>
+                                        <p class="text-muted">Ra Ave SW, Seattle, WA 98116, SUA 11:19 AM</p>
+                                    </td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-link"
+                                                data-original-title="Edit Task">
+                                            <i class="tim-icons icon-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="">
+                                                <span class="form-check-sign">
+                            <span class="check"></span>
+                            </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="title">Export the processed files</p>
+                                        <p class="text-muted">The report also shows that consumers will not easily
+                                            forgive a company once a breach exposing their personal data
+                                            occurs. </p>
+                                    </td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-link"
+                                                data-original-title="Edit Task">
+                                            <i class="tim-icons icon-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="">
+                                                <span class="form-check-sign">
+                            <span class="check"></span>
+                            </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="title">Arival at export process</p>
+                                        <p class="text-muted">Capitol Hill, Seattle, WA 12:34 AM</p>
+                                    </td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-link"
+                                                data-original-title="Edit Task">
+                                            <i class="tim-icons icon-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="card ">
+                    <div class="card-header">
+                        <h4 class="card-title"> Latest Invoices</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table tablesorter " id="">
+                                <thead class=" text-primary">
+                                <tr>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Company
+                                    </th>
+                                    <th>
+                                        Service
+                                    </th>
+                                    <th class="text-center">
+                                        Dated
+                                    </th>
+                                    <th class="text-center">
+                                        Amount
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Dakota Rice
+                                    </td>
+                                    <td>
+                                        Niger
+                                    </td>
+                                    <td>
+                                        Oud-Turnhout
+                                    </td>
+                                    <td class="text-center">
+                                        Jan, 15
+                                    </td>
+                                    <td class="text-center">
+                                        $36,738
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Minerva Hooper
+                                    </td>
+                                    <td>
+                                        Curaçao
+                                    </td>
+                                    <td>
+                                        Sinaai-Waas
+                                    </td>
+                                    <td class="text-center">
+                                        Jan, 15
+                                    </td>
+                                    <td class="text-center">
+                                        $23,789
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Sage Rodriguez
+                                    </td>
+                                    <td>
+                                        Netherlands
+                                    </td>
+                                    <td>
+                                        Baileux
+                                    </td>
+                                    <td class="text-center">
+                                        Jan, 15
+                                    </td>
+                                    <td class="text-center">
+                                        $56,142
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Philip Chaney
+                                    </td>
+                                    <td>
+                                        Korea, South
+                                    </td>
+                                    <td>
+                                        Overland Park
+                                    </td>
+                                    <td class="text-center">
+                                        Jan, 15
+                                    </td>
+                                    <td class="text-center">
+                                        $38,735
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Doris Greene
+                                    </td>
+                                    <td>
+                                        Malawi
+                                    </td>
+                                    <td>
+                                        Feldkirchen in Kärnten
+                                    </td>
+                                    <td class="text-center">
+                                        Jan, 15
+                                    </td>
+                                    <td class="text-center">
+                                        $63,542
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Mason Porter
+                                    </td>
+                                    <td>
+                                        Chile
+                                    </td>
+                                    <td>
+                                        Gloucester
+                                    </td>
+                                    <td class="text-center">
+                                        Jan, 15
+                                    </td>
+                                    <td class="text-center">
+                                        $78,615
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Jon Porter
+                                    </td>
+                                    <td>
+                                        Portugal
+                                    </td>
+                                    <td>
+                                        Gloucester
+                                    </td>
+                                    <td class="text-center">
+                                        Jan, 15
+                                    </td>
+                                    <td class="text-center">
+                                        $98,615
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+         
+
+        <!-- Calendar -->
+
+        <!-- Monthly Calendar -->
+<div class="container">
+    <div id="monthCalendar">
+        <!-- Month view will be dynamically generated -->
+    </div>
+</div>
+
+<!-- Task Modal -->
+<div class="modal" id="taskModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalDate"></h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <h6>Tasks and Meetings:</h6>
+                <ul id="taskList"></ul>
+            </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Navigation -->
+<div class="text-left my-3">
+    <button class="btn btn-primary" id="prevMonth">Previous</button>
+    <span id="currentMonthYear" class="mx-3 font-weight-bold"></span>
+    <button class="btn btn-primary" id="nextMonth">Next</button>
+</div>
+
+<!-- Styles -->
+<style>
+    #monthCalendar {
+        max-width: 450px;
+        margin: left;
+    }
+
+    .month-header {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+        text-align: center;
+    }
+
+    .calendar-day {
+        font-weight: bold;
+        padding: 5px;
+        background: #e8e8e8;
+        border-radius: 5px;
+    }
+
+    .calendar-date {
+        padding: 10px;
+        background: #ffffff;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+        cursor: pointer;
+    }
+
+    .calendar-date:hover {
+        background: #dcdcdc;
+    }
+
+    .calendar-date.empty {
+        background: transparent;
+        cursor: default;
+    }
+</style>
+
+<!-- Script -->
+<script>
+    const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    const tasks = {
+        "2025-01-15": ["Team Meeting at 10:00 AM", "Client Call at 2:00 PM"],
+        "2025-01-20": ["Project Deadline at 4:00 PM"],
+        "2025-02-05": ["Workshop at 11:00 AM"],
+    };
+
+    let currentYear = 2025;
+    let currentMonth = 0; // January (0-indexed)
+
+    const monthCalendar = document.getElementById("monthCalendar");
+    const taskModal = document.getElementById("taskModal");
+    const taskList = document.getElementById("taskList");
+    const modalDate = document.getElementById("modalDate");
+    const currentMonthYear = document.getElementById("currentMonthYear");
+    const prevMonthButton = document.getElementById("prevMonth");
+    const nextMonthButton = document.getElementById("nextMonth");
+
+    function renderMonth(year, month) {
+        monthCalendar.innerHTML = ""; // Clear the calendar
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        currentMonthYear.textContent = `${monthNames[month]} ${year}`;
+
+        // Days of the week
+        const calendarGrid = document.createElement("div");
+        calendarGrid.className = "calendar-grid";
+        ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach(day => {
+            const dayElement = document.createElement("div");
+            dayElement.className = "calendar-day";
+            dayElement.textContent = day;
+            calendarGrid.appendChild(dayElement);
+        });
+
+        // Empty placeholders for the first week
+        for (let i = 0; i < firstDayOfMonth; i++) {
+            const placeholder = document.createElement("div");
+            placeholder.className = "calendar-date empty";
+            calendarGrid.appendChild(placeholder);
+        }
+
+        // Add actual dates
+        for (let i = 1; i <= daysInMonth; i++) {
+            const dateElement = document.createElement("div");
+            dateElement.className = "calendar-date";
+            dateElement.textContent = i;
+
+            const fullDate = `${year}-${String(month + 1).padStart(2, "0")}-${String(i).padStart(2, "0")}`;
+
+            // Add click event
+            dateElement.addEventListener("click", () => {
+                showTasks(fullDate);
+            });
+
+            calendarGrid.appendChild(dateElement);
+        }
+
+        monthCalendar.appendChild(calendarGrid);
+    }
+
+    function showTasks(date) {
+        modalDate.textContent = `Tasks for ${date}`;
+        taskList.innerHTML = "";
+
+        if (tasks[date]) {
+            tasks[date].forEach(task => {
+                const taskItem = document.createElement("li");
+                taskItem.textContent = task;
+                taskList.appendChild(taskItem);
+            });
+        } else {
+            taskList.innerHTML = "<li>No tasks scheduled</li>";
+        }
+
+        $(taskModal).modal("show");
+    }
+
+    function changeMonth(direction) {
+        currentMonth += direction;
+
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        } else if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+
+        renderMonth(currentYear, currentMonth);
+    }
+
+    // Event listeners for navigation
+    prevMonthButton.addEventListener("click", () => changeMonth(-1));
+    nextMonthButton.addEventListener("click", () => changeMonth(1));
+
+    // Render the first month (January 2025)
+    renderMonth(currentYear, currentMonth);
+</script>
+
+        
+
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+    });
+</script>
+
+{% endblock javascripts %}

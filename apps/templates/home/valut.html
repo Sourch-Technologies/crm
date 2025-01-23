@@ -1,0 +1,638 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="row">
+            <!-- Box 1: Traffic on Website -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-bell-55 text-primary" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">763,215</h3>
+                        <p class="card-category">Social Media</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 2: Daily Sales -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-delivery-fast text-info" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">3,500€</h3>
+                        <p class="card-category">Daily Sales</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 3: Team Performance -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-send text-success" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">12,100K</h3>
+                        <p class="card-category">Projects Running</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 4: New Users -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-single-02 text-warning" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">15,243</h3>
+                        <p class="card-category">New Clients</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Box 5: Conversion Rate -->
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-chart-bar-32 text-danger" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">12%</h3>
+                        <p class="card-category">Conversion Rate</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <i class="tim-icons icon-single-02 text-danger" style="font-size: 30px;"></i>
+                        <h3 class="card-title mt-3">12</h3>
+                        <p class="card-category">Active Employees</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Monthly Reachout Analysis</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="chartLinePurple"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Daily Platform Usage </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="CountryChart" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Monthly Target Analysis</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="chartLineGreen"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+      
+          <!-- Chart.js Library -->
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+          <script>
+              // Example for rendering CountryChart
+              var ctx = document.getElementById('CountryChart').getContext('2d');
+              var countryChart = new Chart(ctx, {
+                  type: 'bar',  // Or use 'line', 'bar', etc.
+                  data: {
+                      labels: ['Alloted', 'Warm', 'Cold','Converted'],
+                      datasets: [{
+                          data: [300, 50, 100, 60],
+                          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#00BCD4']
+                      }]
+                  },
+                  options: {
+                      responsive: true,
+                      plugins: {
+                          legend: {
+                              position: 'top',
+                          },
+                          tooltip: {
+                              callbacks: {
+                                  label: function(tooltipItem) {
+                                      return tooltipItem.raw + ' units';
+                                  }
+                              }
+                          }
+                      }
+                  }
+              });
+          </script>
+
+
+
+<!--section 3--> 
+<div class="container mt-5">
+    <!-- Lead Upload Section -->
+    <div class="lead-upload-section mb-5">
+        <h3>Upload Leads</h3>
+        <form id="leadUploadForm">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text" id="fullName" class="form-control" placeholder="Enter full name" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="jobTitle" class="form-label">Job Title</label>
+                    <input type="text" id="jobTitle" class="form-control" placeholder="Enter job title" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="companyName" class="form-label">Company Name</label>
+                    <input type="text" id="companyName" class="form-control" placeholder="Enter company name" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="emails" class="form-label">Emails</label>
+                    <input type="text" id="emails" class="form-control" placeholder="Enter emails, separated by commas" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="phoneNumbers" class="form-label">Phone Numbers</label>
+                    <input type="text" id="phoneNumbers" class="form-control" placeholder="Enter phone numbers, separated by commas" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="socialLinks" class="form-label">Social Links</label>
+                    <input type="text" id="socialLinks" class="form-control" placeholder="Enter social platforms, separated by commas" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" id="location" class="form-control" placeholder="Enter location" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="employeeSize" class="form-label">Employee Size</label>
+                    <input type="text" id="employeeSize" class="form-control" placeholder="Enter employee size" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="industry" class="form-label">Industry</label>
+                    <input type="text" id="industry" class="form-control" placeholder="Enter industry" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Upload Lead</button>
+        </form>
+    </div>
+
+    <!-- Leads Table Section -->
+    <div class="lead-table-section">
+        <h3>Leads Table</h3>
+        <table class="table table-bordered" id="leadTable">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Job Title</th>
+                    <th>Company Name</th>
+                    <th>Emails</th>
+                    <th>Phone Numbers</th>
+                    <th>Social Links</th>
+                    <th>Location</th>
+                    <th>Employee Size</th>
+                    <th>Industry</th>
+                    <th>Action</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic Rows Added Here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("leadUploadForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Retrieve form values
+            const fullName = document.getElementById("fullName").value.trim();
+            const jobTitle = document.getElementById("jobTitle").value.trim();
+            const companyName = document.getElementById("companyName").value.trim();
+            const emails = document.getElementById("emails").value.trim();
+            const phoneNumbers = document.getElementById("phoneNumbers").value.trim();
+            const socialLinks = document.getElementById("socialLinks").value.trim();
+            const location = document.getElementById("location").value.trim();
+            const employeeSize = document.getElementById("employeeSize").value.trim();
+            const industry = document.getElementById("industry").value.trim();
+
+            // Validate input
+            if (!fullName || !jobTitle || !companyName || !emails || !phoneNumbers || !socialLinks || !location || !employeeSize || !industry) {
+                alert("Please fill out all fields.");
+                return;
+            }
+
+            // Add lead to table
+            const leadTable = document.getElementById("leadTable").querySelector("tbody");
+            const newRow = `
+                <tr>
+                    <td>${fullName}</td>
+                    <td>${jobTitle}</td>
+                    <td>${companyName}</td>
+                    <td>${emails}</td>
+                    <td>${phoneNumbers}</td>
+                    <td>${socialLinks}</td>
+                    <td>${location}</td>
+                    <td>${employeeSize}</td>
+                    <td>${industry}</td>
+                    <td>${action}</td>
+                    
+                </tr>
+            `;
+            leadTable.insertAdjacentHTML("beforeend", newRow);
+
+            // Reset form
+            this.reset();
+
+            alert("Lead uploaded successfully!");
+        });
+    });
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+  
+<!--section 4--> 
+
+
+      
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    
+    <div class="container mt-5 lead-section">
+            <h3>Alloted Leads</h3>
+        <!-- Lead Nature Filters -->
+        <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons" id="leadNatureFilters">
+            <label class="btn btn-sm btn-primary active">
+                <input type="radio" name="leadNature" value="All" checked> All Leads
+            </label>
+            <label class="btn btn-sm btn-primary">
+                <input type="radio" name="leadNature" value="Hot Leads"> Hot Leads
+            </label>
+            <label class="btn btn-sm btn-primary">
+                <input type="radio" name="leadNature" value="Warm Leads"> Warm Leads
+            </label>
+            <label class="btn btn-sm btn-primary">
+                <input type="radio" name="leadNature" value="Cold Leads"> Cold Leads
+            </label>
+            <label class="btn btn-sm btn-primary">
+                <input type="radio" name="leadNature" value="Dead Leads"> Dead Leads
+            </label>
+        </div>
+    
+        <!-- Lead List Table -->
+        <div class="table-responsive">
+            <table class="table tablesorter" id="leadTable">
+                <thead class="text-primary">
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Job Title</th>
+                        <th>Company Name</th>
+                        <th>Emails</th>
+                        <th>Phone Numbers</th>
+                        <th>Social Links</th>
+                        <th>Location</th>
+                        <th>Employee Size</th>
+                        <th>Industry</th>
+                        <th>Change Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nuvitro Io</td>
+                        <td>CEO</td>
+                        <td>Nuvitro</td>
+                        <td>
+                            <a href="javascript:void(0);" class="email-link"  data-emails="nuvitro.io@gmail.com,hello@nuvitro.io">View Emails</a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0);" class="phone-link" data-phones="+44 8745*****,+44847******">View Contact No.s</a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0);" class="social-link" data-socials="linkedin,facebook,twitter">View Social Accounts</a>
+                        </td>
+                        <td>United States</td>
+                        <td>10-50</td>
+                        <td>IT SaaS</td>
+                        <td>
+                            <button class="btn btn-outline-primary btn-sm change-status-btn" data-status="Hot">Change Status</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-info btn-sm followup-btn" data-toggle="modal" data-target="#followupModal">Follow Up</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+
+ 
+
+    <!-- View Emails Modal -->
+    <div class="modal fade" id="emailsModal" tabindex="-1" role="dialog" aria-labelledby="emailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            
+             <div class="modal-content" style="background-color: rgb(1, 1, 1); color: rgb(3, 3, 3);"></div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="emailsModalLabel">Emails</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul id="emailList">
+                        <!-- Emails will be dynamically added here -->
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- Social Media Modal -->
+<div class="modal fade" id="socialModal" tabindex="-1" role="dialog" aria-labelledby="socialModalLabel" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="socialModalLabel">Social Media Accounts</h5>
+             
+         </div>
+         <div class="modal-body">
+             <div id="socialLinksContainer" class="d-flex flex-wrap justify-content-start">
+                 <!-- Social media icons will be dynamically added here -->
+             </div>
+         </div>
+     </div>
+ </div>
+</div>
+
+    <!-- View Contact Numbers Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+         <div class="modal-content"></div>
+               
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactModalLabel">Contact Numbers</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul id="contactList">
+                        <!-- Contact numbers will be dynamically added here -->
+                    </ul>
+                </div> 
+            </div>
+        </div>
+    </div>
+    
+    <!-- Follow-Up Modal -->
+    <div class="modal fade" id="followupModal" tabindex="-1" role="dialog" aria-labelledby="followupModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content" style="background-color: rgb(0, 0, 0); color:  rgb(253, 253, 253);"></div>
+               
+                <div class="modal-header">
+                    <h5 class="modal-title" id="followupModalLabel">Send Follow-Up Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+               
+
+
+                <div class="modal-body">
+                 <form id="followupForm">
+                     <div class="form-group">
+                         <label for="communicationType">Select Communication Type</label>
+                         <select id="communicationType" class="form-control" required>
+                             <option value="email">Email</option>
+                             <option value="message">Message</option>
+                         </select>
+                     </div>
+             
+                     <!-- Email Fields -->
+                     <div id="emailFields" class="d-none">
+                         <div class="form-group">
+                             <label for="recipientEmail">Recipient's Email</label>
+                             <select id="recipientEmail" class="form-control">
+                                 <!-- Populated dynamically -->
+                             </select>
+                         </div>
+                         <div class="form-group">
+                             <label for="messageSubject">Subject</label>
+                             <input type="text" id="messageSubject" class="form-control" placeholder="Subject">
+                         </div>
+                         <div class="form-group">
+                             <label for="emailContent">Message</label>
+                             <textarea id="emailContent" class="form-control" rows="5" placeholder="Type your message..."></textarea>
+                         </div>
+                     </div>
+             
+                     <!-- Message Fields -->
+                     <div id="messageFields" class="d-none">
+                         <div class="form-group">
+                             <label for="socialMediaAccount">Select Social Media Account</label>
+                             <select id="socialMediaAccount" class="form-control">
+                                 <!-- Populated dynamically -->
+                             </select>
+                         </div>
+                         <div class="form-group">
+                             <label for="messageContent">Message</label>
+                             <textarea id="messageContent" class="form-control" rows="5" placeholder="Type your message..."></textarea>
+                         </div>
+                     </div>
+             
+                     <button type="submit" class="btn btn-primary">Send</button>
+                 </form>
+             </div>
+             
+             <script>
+                 // Simulated lead data (replace with actual data source)
+                 const leadEntries = {
+                     email: ["lead1@example.com", "lead2@example.com", "lead3@example.com"],
+                     socialMedia: {
+                         facebook: "lead_facebook_account",
+                         instagram: "lead_instagram_account",
+                         twitter: "lead_twitter_account",
+                          linkedin: "lead_linkedin_account"
+                     }
+                 };
+             
+                 // Populate dropdowns based on lead entries
+                 document.addEventListener("DOMContentLoaded", function () {
+                     const recipientEmailSelect = document.getElementById("recipientEmail");
+                     const socialMediaSelect = document.getElementById("socialMediaAccount");
+             
+                     // Populate email options
+                     leadEntries.email.forEach(email => {
+                         const option = document.createElement("option");
+                         option.value = email;
+                         option.textContent = email;
+                         recipientEmailSelect.appendChild(option);
+                     });
+             
+                     // Populate social media options
+                     for (const [platform, handle] of Object.entries(leadEntries.socialMedia)) {
+                         const option = document.createElement("option");
+                         option.value = platform;
+                         option.textContent = `${platform.charAt(0).toUpperCase() + platform.slice(1)} (${handle})`;
+                         socialMediaSelect.appendChild(option);
+                     }
+                 });
+             
+                 // Toggle form fields based on communication type
+                 document.getElementById("communicationType").addEventListener("change", function () {
+                     const emailFields = document.getElementById("emailFields");
+                     const messageFields = document.getElementById("messageFields");
+             
+                     if (this.value === "email") {
+                         emailFields.classList.remove("d-none");
+                         emailFields.querySelectorAll("select, input, textarea").forEach((input) => input.setAttribute("required", true));
+                         messageFields.classList.add("d-none");
+                         messageFields.querySelectorAll("select, textarea").forEach((input) => input.removeAttribute("required"));
+                     } else if (this.value === "message") {
+                         messageFields.classList.remove("d-none");
+                         messageFields.querySelectorAll("select, textarea").forEach((input) => input.setAttribute("required", true));
+                         emailFields.classList.add("d-none");
+                         emailFields.querySelectorAll("select, input, textarea").forEach((input) => input.removeAttribute("required"));
+                     } else {
+                         emailFields.classList.add("d-none");
+                         emailFields.querySelectorAll("select, input, textarea").forEach((input) => input.removeAttribute("required"));
+                         messageFields.classList.add("d-none");
+                         messageFields.querySelectorAll("select, textarea").forEach((input) => input.removeAttribute("required"));
+                     }
+                 });
+             </script>
+             
+
+
+
+
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+
+
+        $(document).ready(function () {
+            // Handle "View Emails" Click
+            $(".email-link").on("click", function () {
+                const emails = $(this).data("emails").split(",");
+                const emailList = emails.map(email => `<li>${email}</li>`).join("");
+                $("#emailList").html(emailList);
+                $("#emailsModal").modal("show");
+            });
+            $(document).ready(function () {
+ // Handle "View Social Accounts" Click
+ $(".social-link").on("click", function () {
+     const socialAccounts = $(this).data("socials").split(",");
+     const socialLinks = socialAccounts.map(account => {
+         const iconClass = `fab fa-${account}`; // Font Awesome icon class
+         const url = `https://www.${account}.com`; // Example URL
+         return `<a href="${url}" target="_blank" class="mx-2 text-dark">
+                     <i class="${iconClass}" style="font-size: 1.5rem;"></i>
+                 </a>`;
+     }).join("");
+     $("#socialLinksContainer").html(socialLinks);
+     $("#socialModal").modal("show");
+ });
+});
+
+            // Handle "View Contact Numbers" Click
+            $(".phone-link").on("click", function () {
+                const phones = $(this).data("phones").split(",");
+                const phoneList = phones.map(phone => `<li>${phone}</li>`).join("");
+                $("#contactList").html(phoneList);
+                $("#contactModal").modal("show");
+            });
+    
+            // Follow-Up Form Submission
+            $("#followupForm").on("submit", function (event) {
+                event.preventDefault();
+                const email = $("#recipientEmail").val();
+                const subject = $("#messageSubject").val();
+                const message = $("#messageContent").val();
+    
+                alert(`Message sent to ${email}\nSubject: ${subject}\nMessage: ${message}`);
+                $("#followupModal").modal("hide");
+            });
+    
+            // Change Lead Status
+            $(".change-status-btn").on("click", function () {
+                const currentStatus = $(this).data("status");
+                const newStatus = prompt("Enter new status (Hot, Warm, Cold):", currentStatus);
+                if (newStatus) {
+                    $(this).data("status", newStatus);
+                    $(this).closest("tr").find("td:nth-child(10)").text(newStatus);
+                    alert(`Lead status changed to: ${newStatus}`);
+                }
+            });
+        });
+    </script>
+    
+ </div>
+
+
+
+
+
+
+</div>
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+    });
+</script>
+
+{% endblock javascripts %}
+
+<!--script for  charts -->

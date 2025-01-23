@@ -1,0 +1,178 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="content">
+        <!-- Main Container -->
+<div class="container mt-5">
+    <h2 class="text-primary">Nuvitro.io CRM Overview</h2>
+
+    <!-- Users Table -->
+    <h3 class="mt-4">My Company  Users</h3>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="usersTable">
+            <!-- Rows dynamically populated -->
+        </tbody>
+    </table>
+
+    <!-- CRM Users by Companies -->
+    <h3 class="mt-5">Companies Using Nuvtro.io CRM</h3>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Company Owner</th>
+                <th>Company Name</th>
+                <th>Start Date</th>
+                <th>Associated Users</th>
+            </tr>
+        </thead>
+        <tbody id="companiesTable">
+            <!-- Rows dynamically populated -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal to Display Associated Users -->
+<div class="modal fade" id="associatedUsersModal" tabindex="-1" role="dialog" aria-labelledby="associatedUsersModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-primary" id="associatedUsersModalLabel">Associated Users</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6 id="selectedUserName" class="text-info"></h6>
+                <ul id="associatedUsersList" class="list-group">
+                    <!-- Associated users dynamically populated -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Example data for CRM users
+    const crmUsers = [
+        { id: 1, name: "John Doe", email: "john.doe@example.com", role: "Admin", associatedUsers: ["Client A", "Client B", "Client C"] },
+        { id: 2, name: "Jane Smith", email: "jane.smith@example.com", role: "Manager", associatedUsers: ["Team Member X", "Team Member Y"] },
+        { id: 3, name: "Michael Brown", email: "michael.brown@example.com", role: "User", associatedUsers: ["Vendor 1", "Vendor 2", "Vendor 3"] },
+    ];
+
+    // Example data for companies using CRM
+    const companiesUsingCRM = [
+        { id: 1, owner: "Alice Johnson", companyName: "TechCorp", associatedUsers: ["Employee A", "Employee B", "Employee C"], startdate: "2020-01-01" },
+        { id: 2, owner: "Bob Williams", companyName: "InnovateX", associatedUsers: ["Manager X", "Manager Y", "Intern Z"],startdate: "2020-01-01" },
+        { id: 3, owner: "Charlie Davis", companyName: "BuildIt Inc.", associatedUsers: ["Worker 1", "Worker 2"], startdate: "2020-01-01" },
+    ];
+
+    // Populate the CRM users table
+    function populateUsersTable() {
+        const tableBody = document.getElementById("usersTable");
+        tableBody.innerHTML = ""; // Clear table
+        crmUsers.forEach((user, index) => {
+            const row = `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.role}</td>
+                    <td>
+                        <button class="btn btn-info btn-sm" onclick="showAssociatedUsers(${user.id}, 'crmUsers')">
+                            View Users
+                        </button>
+                    </td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+    }
+
+    // Populate the companies table
+    function populateCompaniesTable() {
+        const tableBody = document.getElementById("companiesTable");
+        tableBody.innerHTML = ""; // Clear table
+        companiesUsingCRM.forEach((company, index) => {
+            const row = `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${company.owner}</td>
+                    <td>${company.companyName}</td>
+                     <td>${company.startdate}</td>
+                    <td>${company.associatedUsers.length} Users</td>
+                    <td>
+                        <button class="btn btn-info btn-sm" onclick="showAssociatedUsers(${company.id}, 'companiesUsingCRM')">
+                            View Users
+                        </button>
+                    </td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+    }
+
+    // Show associated users in the modal
+    function showAssociatedUsers(id, dataSource) {
+        const data = dataSource === "crmUsers" ? crmUsers : companiesUsingCRM;
+        const entity = data.find((item) => item.id === id);
+        if (entity) {
+            document.getElementById("selectedUserName").textContent = `Associated users for ${entity.name || entity.companyName}:`;
+            const usersList = document.getElementById("associatedUsersList");
+            usersList.innerHTML = ""; // Clear list
+            entity.associatedUsers.forEach((associatedUser) => {
+                const listItem = `<li class="list-group-item">${associatedUser}</li>`;
+                usersList.innerHTML += listItem;
+            });
+            $("#associatedUsersModal").modal("show"); // Show modal
+        }
+    }
+
+    // Initialize the tables on page load
+    document.addEventListener("DOMContentLoaded", () => {
+        populateUsersTable();
+        populateCompaniesTable();
+    });
+</script>
+
+<!-- Include Bootstrap CSS and JS -->
+<link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+/>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"
+></script>
+
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+    });
+</script>
+
+{% endblock javascripts %}

@@ -1,0 +1,202 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Finance and Operations {% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="content">
+    <div class="container mt-5">
+        <h2>Finance and Operations Dashboard</h2>
+
+        <!-- Financial Overview Section -->
+        <div class="row mt-4">
+            <!-- Add Financial Records -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Add Financial Records</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="financeForm">
+                            <div class="mb-3">
+                                <label for="expenseType" class="form-label">Expense Type</label>
+                                <select id="expenseType" class="form-select">
+                                    <option value="Salary">Salary</option>
+                                    <option value="Office Expenses">Office Expenses</option>
+                                    <option value="Rent">Rent</option>
+                                    <option value="Stationery">Stationery</option>
+                                    <option value="Tax">Tax</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="amount" class="form-label">Amount</label>
+                                <input type="number" id="amount" class="form-control" placeholder="Enter amount">
+                            </div>
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Date</label>
+                                <input type="date" id="date" class="form-control">
+                            </div>
+                            <button type="button" class="btn btn-primary w-100" onclick="addFinanceRecord()">Add Record</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Summary -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Financial Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="earnedAmount" class="form-label">Earned Amount</label>
+                            <input type="number" id="earnedAmount" class="form-control" placeholder="Enter earned amount" oninput="calculateProfit()">
+                        </div>
+                        <h5 class="mt-3">Total Expenses: <span id="totalExpenses">$0.00</span></h5>
+                        <h5 class="mt-3">Profit: <span id="profitAmount">$0.00</span></h5>
+                        <canvas id="financeChart" class="mt-4"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Records Table -->
+        <div class="card mt-5">
+            <div class="card-header">
+                <h5 class="card-title">Financial Records</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="financeTableBody">
+                        <!-- Dynamic Financial Records -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    let financeData = {
+        Salary: 0,
+        "Office Expenses": 0,
+        Rent: 0,
+        Stationery: 0,
+        Tax: 0,
+        Others: 0
+    };
+
+    // Add Finance Record
+    function addFinanceRecord() {
+        const expenseType = document.getElementById("expenseType").value;
+        const amount = parseFloat(document.getElementById("amount").value);
+        const date = document.getElementById("date").value;
+
+        if (!amount || !date) {
+            alert("Please fill out all fields!");
+            return;
+        }
+
+        // Update financial data
+        financeData[expenseType] += amount;
+
+        // Add record to the table
+        const newRow = document.createElement("tr");
+        newRow.innerHTML = `
+            <td>${expenseType}</td>
+            <td>$${amount.toFixed(2)}</td>
+            <td>${new Date(date).toLocaleDateString()}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" onclick="deleteFinanceRecord(this, '${expenseType}', ${amount})">Delete</button>
+            </td>
+        `;
+        document.getElementById("financeTableBody").appendChild(newRow);
+
+        // Update expenses and profit
+        updateFinanceChart();
+        updateTotalExpenses();
+        calculateProfit();
+
+        // Reset the form
+        document.getElementById("financeForm").reset();
+    }
+
+    // Delete Finance Record
+    function deleteFinanceRecord(row, expenseType, amount) {
+        // Update financial data
+        financeData[expenseType] -= amount;
+
+        // Remove row from the table
+        row.parentElement.parentElement.remove();
+
+        // Update expenses and profit
+        updateFinanceChart();
+        updateTotalExpenses();
+        calculateProfit();
+    }
+
+    // Update Total Expenses
+    function updateTotalExpenses() {
+        const totalExpenses = Object.values(financeData).reduce((sum, value) => sum + value, 0);
+        document.getElementById("totalExpenses").textContent = `$${totalExpenses.toFixed(2)}`;
+    }
+
+    // Calculate Profit
+    function calculateProfit() {
+        const totalExpenses = Object.values(financeData).reduce((sum, value) => sum + value, 0);
+        const earnedAmount = parseFloat(document.getElementById("earnedAmount").value) || 0;
+        const profit = earnedAmount - totalExpenses;
+        document.getElementById("profitAmount").textContent = `$${profit.toFixed(2)}`;
+    }
+
+    // Initialize the Chart
+    const financeChart = new Chart(document.getElementById("financeChart"), {
+        type: "doughnut",
+        data: {
+            labels: Object.keys(financeData),
+            datasets: [{
+                label: "Financial Distribution",
+                data: Object.values(financeData),
+                backgroundColor: [
+                    "rgba(75, 192, 192, 0.6)", // Salary
+                    "rgba(255, 99, 132, 0.6)", // Office Expenses
+                    "rgba(54, 162, 235, 0.6)", // Rent
+                    "rgba(255, 206, 86, 0.6)", // Stationery
+                    "rgba(153, 102, 255, 0.6)", // Tax
+                    "rgba(255, 159, 64, 0.6)"  // Others
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: "top"
+                }
+            }
+        }
+    });
+
+    // Update Finance Chart
+    function updateFinanceChart() {
+        financeChart.data.datasets[0].data = Object.values(financeData);
+        financeChart.update();
+    }
+</script>
+{% endblock content %}

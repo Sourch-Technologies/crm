@@ -1,0 +1,706 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="content">
+
+<!-- Feature Icons -->
+
+<div class="row">
+    <!-- Box 1: Traffic on Website -->
+    <div class="col-lg-2">
+        <div class="card card-plain">
+            <div class="card-body text-center">
+                <i class="tim-icons icon-sound-wave text-primary" style="font-size: 30px;"></i>
+                <h3 class="card-title mt-3">80,462</h3>
+                <p class="card-category">
+                    Sessions
+                    <span style="color: green;">
+                        <i class="fas fa-arrow-up"></i> 5%
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Box 2: Daily Sales -->
+    <div class="col-lg-2">
+        <div class="card card-plain">
+            <div class="card-body text-center">
+                <i class="tim-icons icon-cart text-info" style="font-size: 30px;"></i>
+                <h3 class="card-title mt-3">3,500</h3>
+                <p class="card-category">
+                    Events
+                    <span style="color: red;">
+                        <i class="fas fa-arrow-down"></i> 3%
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Box 3: Team Performance -->
+    <div class="col-lg-2">
+        <div class="card card-plain">
+            <div class="card-body text-center">
+                <i class="tim-icons icon-single-02 text-success" style="font-size: 30px;"></i>
+                <h3 class="card-title mt-3">12,100</h3>
+                <p class="card-category">
+                    Views
+                    <span style="color: green;">
+                        <i class="fas fa-arrow-up"></i> 10%
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Box 4: New Users -->
+    <div class="col-lg-2">
+        <div class="card card-plain">
+            <div class="card-body text-center">
+                <i class="tim-icons icon-chart-bar-32 text-warning" style="font-size: 30px;"></i>
+                <h3 class="card-title mt-3">15,243</h3>
+                <p class="card-category">
+                    Engagement Rate
+                    <span style="color: green;">
+                        <i class="fas fa-arrow-up"></i> 7%
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Box 5: Conversion Rate -->
+    <div class="col-lg-2">
+        <div class="card card-plain">
+            <div class="card-body text-center">
+                <i class="tim-icons icon-chart-pie-36 text-danger" style="font-size: 30px;"></i>
+                <h3 class="card-title mt-3">12%</h3>
+                <p class="card-category">
+                    Average Session Duration
+                    <span style="color: red;">
+                        <i class="fas fa-arrow-down"></i> 2%
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Box 6: Active Keywords -->
+    <div class="col-lg-2">
+        <div class="card card-plain">
+            <div class="card-body text-center">
+                <i class="tim-icons icon-key-25 text-danger" style="font-size: 30px;"></i>
+                <h3 class="card-title mt-3">12</h3>
+                <p class="card-category">
+                    Active Keywords
+                    <span style="color: green;">
+                        <i class="fas fa-arrow-up"></i> 15%
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card p-3">
+            <h4>Domain and Hosting Details</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Details</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Domain Name</td>
+                        <td>
+                            <a href="http://www.example.com" target="_blank" class="text-info">
+                                www.example.com
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Expiry Date (Domain)</td>
+                        <td>2025-12-31</td>
+                        <td>
+                            <button class="btn btn-sm btn-warning">Renew Domain</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Expiry Date (Hosting)</td>
+                        <td>2025-10-01</td>
+                        <td>
+                            <button class="btn btn-sm btn-warning">Renew Hosting</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Hosting Platform</td>
+                        <td>AWS Cloud Hosting</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Domain Platform</td>
+                        <td>GoDaddy</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Traffic Overview Dashboard -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-chart">
+                    <div class="card-header ">
+                        <div class="row">
+                            <div class="col-sm-6 text-left">
+                                <h5 class="card-category">Traffic Overview</h5>
+                                <h2 class="card-title">Dashboard</h2>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                                    <label class="btn btn-sm btn-primary btn-simple active" id="0">
+                                        <input type="radio" name="options" checked>
+                                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Destop</span>
+                                        <span class="d-block d-sm-none">
+                        <i class="tim-icons icon-single-02"></i>
+                    </span>
+                                    </label>
+                                    <label class="btn btn-sm btn-primary btn-simple" id="1">
+                                        <input type="radio" class="d-none d-sm-none" name="options">
+                                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Mobile</span>
+                                        <span class="d-block d-sm-none">
+                        <i class="tim-icons icon-gift-2"></i>
+                    </span>
+                                    </label>
+                                </label>
+                              
+                            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="chartBig1"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Total requests,Bandwidth, Unique IP addresses -->
+        
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Total requests</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-zoom-split text-primary"></i> 7654</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="chartLinePurple"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Bandwidth</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-vector text-info"></i> 3,500</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="CountryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Unique IP addresses</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-tv-2 text-success"></i> 12,100</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="chartLineGreen"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Organic Metrics-->
+        <div class="row">
+            <div class="col-lg-full col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Organic Metrics</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table tablesorter" id="">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>
+                                            Metric
+                                        </th>
+                                        <th>
+                                            Value
+                                        </th>
+                                        <th>
+                                            Change
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            Search Clicks
+                                        </td>
+                                        <td>
+                                           4563
+                                        </td>
+                                        <td>
+                                            <span style="color: green;">
+                                             <i class="fas fa-arrow-up"></i> 12% 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Engaged Sessions
+                                        </td>
+                                        <td>
+                                            34255
+                                        </td>
+                                        <td> 
+                                            <span style="color: red;">
+                                                <i class="fas fa-arrow-down"></i> 8% 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Search Avg. Position
+                                        </td>
+                                        <td>
+                                            12344
+                                        </td>
+                                        <td>
+                                            <span style="color: green;">
+                                                <i class="fas fa-arrow-up"></i> 5% 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- Top list By Countries-->
+        <div class="row">
+            <div class="col-lg-full col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Top list By Countries</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table tablesorter" id="">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>
+                                            Country
+                                        </th>
+                                        <th>
+                                            Clicks
+                                        </th>
+                                        <th>
+                                            Change
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                           USA
+                                        </td>
+                                        <td>
+                                            100
+                                        </td>
+                                        <td>
+                                            <span style="color: green;">
+                                             <i class="fas fa-arrow-up"></i> 12% 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            UK
+                                        </td>
+                                        <td>
+                                            5335
+                                        </td>
+                                        <td>
+                                            <span style="color: red;">
+                                                <i class="fas fa-arrow-down"></i> 8% 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Singapore
+                                        </td>
+                                        <td>
+                                            4235
+                                        </td>
+                                        <td>
+                                            <span style="color: green;">
+                                                <i class="fas fa-arrow-up"></i> 5% 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--Organic Clicks by Page-->
+        <div class="row">
+            <div class="col-lg-full col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Organic Clicks by Page</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table tablesorter" id="">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>
+                                            Page Url
+                                        </th>
+                                        <th>
+                                            Clicks
+                                        </th>
+                                        <th>
+                                            Change
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                           www.nuvitro.io/index.html
+                                        </td>
+                                        <td>
+                                            100
+                                        </td>
+                                        <td>
+                                            <span style="color: green;">
+                                             <i class="fas fa-arrow-up"></i> 12% 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            www.nuvitro.io/pricing.html
+                                        </td>
+                                        <td>
+                                            5335
+                                        </td>
+                                        <td>
+                                            <span style="color: red;">
+                                                <i class="fas fa-arrow-down"></i> 8% 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            www.nuvitro.io/nuvitroai.html
+                                        </td>
+                                        <td>
+                                            4235
+                                        </td>
+                                        <td>
+                                            <span style="color: green;">
+                                                <i class="fas fa-arrow-up"></i> 5% 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- Organic Clicks by Queries-->
+        <div class="row">
+            <div class="col-lg-full col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Organic Clicks by Queries</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table tablesorter" id="">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>
+                                            Query
+                                        </th>
+                                        <th>
+                                            Clicks
+                                        </th>
+                                        <th>
+                                            Change
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            marketing software
+                                        </td>
+                                        <td>
+                                            100
+                                        </td>
+                                        <td>
+                                            <span style="color: green;">
+                                             <i class="fas fa-arrow-up"></i> 12% 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            All in One CRM
+                                        </td>
+                                        <td>
+                                            5335
+                                        </td>
+                                        <td>
+                                            <span style="color: red;">
+                                                <i class="fas fa-arrow-down"></i> 8% 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Dashboard with Invoicing
+                                        </td>
+                                        <td>
+                                            4235
+                                        </td>
+                                        <td>
+                                            <span style="color: green;">
+                                                <i class="fas fa-arrow-up"></i> 5% 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Update Keywords & SEO-->
+<div class="row">
+    <div class="col-lg-full col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">SEO & Keyword Optimizations</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table tablesorter" id="">
+                        <thead class="text-primary">
+                            <tr>
+                                <th>
+                                    Page
+                                </th>
+                                <th>
+                                    Keywords
+                                </th>
+                                <th>
+                                    Strength
+                                </th>
+                                <th>
+                                    Upload New Keywords
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    www.nuvitro.io/index.html
+                                </td>
+                                <td id="keywords-1">
+                                    Dashboard, Sales CRM, Marketing Automation
+                                </td>
+                                <td>
+                                    <span style="color: green;">
+                                        <i class="fas fa-arrow-up"></i> 12% 
+                                    </span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm ml-2" onclick="openModal('www.nuvitro.io/index.html', 'keywords-1')">
+                                        Update Keywords
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    www.nuvitro.io/index.html
+                                </td>
+                                <td id="keywords-1">
+                                    Dashboard, Sales CRM, Marketing Automation
+                                </td>
+                                <td>
+                                    <span style="color: green;">
+                                        <i class="fas fa-arrow-up"></i> 12% 
+                                    </span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm ml-2" onclick="openModal('www.nuvitro.io/index.html', 'keywords-1')">
+                                        Update Keywords
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div class="modal fade" id="keywordModal" tabindex="-1" aria-labelledby="keywordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="keywordModalLabel">Add New Keywords</h5>
+            </div>
+            <div class="modal-body">
+                <form id="keywordForm">
+                    <div class="mb-3">
+                        <label for="newKeywordInput" class="form-label">Keywords (comma-separated)</label>
+                        <input type="text" class="form-control" id="newKeywordInput" placeholder="Enter keywords separated by commas" style="color: black;">
+                    </div>
+                    <input type="hidden" id="pageUrl">
+                    <input type="hidden" id="keywordsElementId">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="submitNewKeywords()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to open the modal and set the page URL and keywords element ID
+    function openModal(pageUrl, keywordsElementId) {
+        document.getElementById('pageUrl').value = pageUrl; // Set the hidden input with the page URL
+        document.getElementById('keywordsElementId').value = keywordsElementId; // Set the hidden input with the element ID
+        const modal = new bootstrap.Modal(document.getElementById('keywordModal')); // Bootstrap modal instance
+        modal.show(); // Show the modal
+    }
+
+    // Function to handle keyword submission
+    function submitNewKeywords() {
+        const keywordsInput = document.getElementById('newKeywordInput').value.trim();
+        const keywordsElementId = document.getElementById('keywordsElementId').value;
+
+        if (keywordsInput) {
+            const newKeywords = keywordsInput.split(',').map(keyword => keyword.trim()); // Parse and trim the keywords
+            const keywordsElement = document.getElementById(keywordsElementId);
+
+            // Append the new keywords to the existing ones
+            const existingKeywords = keywordsElement.textContent.split(',').map(keyword => keyword.trim());
+            const updatedKeywords = [...new Set([...existingKeywords, ...newKeywords])]; // Merge and remove duplicates
+
+            keywordsElement.textContent = updatedKeywords.join(', '); // Update the table cell with new keywords
+            document.getElementById('newKeywordInput').value = ""; // Clear the input field
+
+            const modalElement = document.getElementById('keywordModal');
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            modal.hide(); // Close the modal
+        } else {
+            alert("Please enter at least one keyword!");
+        }
+    }
+</script>
+
+
+
+        
+        
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+    });
+</script>
+<script>
+function submitNewKeyword() {
+    // Get the value of the input field
+    const keyword = document.getElementById("newKeywordInput").value;
+
+    if (keyword.trim() === "") {
+        alert("Please enter a keyword.");
+        return;
+    }
+
+    // Handle the keyword submission (e.g., send it to the server or process it)
+    alert(`Keyword submitted: ${keyword}`);
+
+    // Clear the input field
+    document.getElementById("newKeywordInput").value = "";
+
+    // Close the modal
+    const keywordModal = document.getElementById("keywordModal");
+    const modal = bootstrap.Modal.getInstance(keywordModal);
+    modal.hide();
+}
+</script>
+
+{% endblock javascripts %}
